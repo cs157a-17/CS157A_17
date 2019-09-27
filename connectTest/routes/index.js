@@ -35,10 +35,6 @@ router.post('/adduser', function(req, res) {
   // Set our collection
   var collection = db.get('usercollection');
 
-  /* GET New User page. */
-router.get('/newuser', function(req, res) {
-  res.render('newuser', { title: 'Add New User' });
-});
 
   // Submit to the DB
   collection.insert({
@@ -56,5 +52,10 @@ router.get('/newuser', function(req, res) {
   });
 
 });
+
+  /* GET New User page. */
+  router.get('/newuser', function(req, res) {
+    res.render('newuser', { title: 'Add New User' });
+  });
 
 module.exports = router;
