@@ -14,10 +14,10 @@ const db = mysql.createConnection({
 db.connect()
 
 /* Demo. */
-router.get('/', function(req, resp) {
+router.get('/', function(req, res) {
   db.query("SELECT * FROM emp", function (err, result, fields) {
     if (err) throw err;
-      resp.json(result);
+    res.send(result);
   });
 });
 

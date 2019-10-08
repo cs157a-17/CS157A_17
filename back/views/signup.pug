@@ -2,9 +2,7 @@ html
    head
       title Signup
    body
-      if(message)
-         h4 #{message}
-         form(action = "/signup" method = "POST")
-         input(name = "id" type = "text" required placeholder = "User ID")
-         input(name = "password" type = "password" required placeholder = "Password")
-         button(type = "Submit") Sign me up!
+      h1 #{"DEMO"}
+      form(action = "/signup/submit" method = "POST")
+      input(name = "id", type = "text", placeholder = "User ID")
+      button(type = "submit") Sign up!

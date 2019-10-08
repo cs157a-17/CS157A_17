@@ -21,6 +21,8 @@ const db = mysql.createConnection({
     database: "cs157a"
 })
 
+db.connect();
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
