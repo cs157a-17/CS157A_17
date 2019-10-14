@@ -7,6 +7,14 @@ SELECT * FROM payingusers;
 SELECT * FROM items;
 SELECT * FROM carts;
 SELECT * FROM addresses;
+SELECT * FROM HaveU;
+SELECT * FROM HavePU;
+SELECT * FROM HaveS;
+SELECT * FROM BuyIn;
+SELECT * FROM Buy;
+SELECT * FROM Search;
+
+
 
 /*create table*/
 CREATE TABLE `cs157a`.`users` (
@@ -59,6 +67,42 @@ CREATE TABLE `cs157a`.`carts` (
   `Quantity` INT NOT NULL,
   `Total price` INT NOT NULL,
   PRIMARY KEY (`Cart ID`));
+
+CREATE TABLE `cs157a`.`HaveU` (
+  `userID` INT NOT NULL,
+  `addressesID` INT NOT NULL,
+  PRIMARY KEY (`userID`),
+  UNIQUE INDEX `addressesID_UNIQUE` (`addressesID` ASC) VISIBLE);
+
+CREATE TABLE `cs157a`.`HavePU` (
+  `PayingUsersCardNumber` INT NOT NULL,
+  `AddressesID` INT NOT NULL,
+  PRIMARY KEY (`PayingUsersCardNumber`),
+  UNIQUE INDEX `AddressesID_UNIQUE` (`AddressesID` ASC) VISIBLE);
+
+CREATE TABLE `cs157a`.`HaveS` (
+  `SppliserID` INT NOT NULL,
+  `AddressesID` INT NOT NULL,
+  PRIMARY KEY (`SppliserID`),
+  UNIQUE INDEX `AddressesID_UNIQUE` (`AddressesID` ASC) VISIBLE);
+
+CREATE TABLE `cs157a`.`BuyIn` (
+  `itermID` INT NOT NULL,
+  `cartID` INT NOT NULL,
+  PRIMARY KEY (`itermID`),
+  UNIQUE INDEX `cartID_UNIQUE` (`cartID` ASC) VISIBLE);
+
+CREATE TABLE `cs157a`.`Buy` (
+  `cartID` INT NOT NULL,
+  `PayingUsersCardNumber` INT NOT NULL,
+  PRIMARY KEY (`cartID`),
+  UNIQUE INDEX `PayingUsersCardNumber_UNIQUE` (`PayingUsersCardNumber` ASC) VISIBLE);
+
+CREATE TABLE `cs157a`.`Search` (
+  `User ID` VARCHAR(255) NOT NULL,
+  `Item ID` INT NOT NULL,
+  PRIMARY KEY (`userID`),
+  UNIQUE INDEX `itermID_UNIQUE` (`itermID` ASC) VISIBLE);
   
   /*insert data to table*/
 insert into users values ('a', 'pw', 'a', 'a', 1234567890), ('b', 'pw', 'b', 'b', 1234567890), ('c', 'pw', 'c', 'c', 1234567890), ('d', 'pw', 'd', 'd', 1234567890), ('e', 'pw', 'e', 'e', 1234567890), 
@@ -76,4 +120,15 @@ insert into payingusers values (1234, 'a', '2020-10-12', 'VISA'), (3123, 'a', '2
 insert into itemns values ();
 
 insert into addresses values ();
-  
+
+insert into HaveU values ();
+
+insert into HavePU values ();
+
+insert into HaveS values ();
+
+insert into BuyIn values ();
+
+insert into Buy values ();
+
+insert into Search values ();
