@@ -15,7 +15,7 @@ db.connect()
 
 /* Demo. */
 router.get('/', function(req, res) {
-  db.query("SELECT * FROM emp", function (err, result, fields) {
+  db.query("SELECT * FROM users", function (err, result, fields) {
     if (err) throw err;
     res.send(result);
   });
