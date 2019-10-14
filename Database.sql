@@ -99,8 +99,8 @@ CREATE TABLE `cs157a`.`Buy` (
   UNIQUE INDEX `PayingUsersCardNumber_UNIQUE` (`PayingUsersCardNumber` ASC) VISIBLE);
 
 CREATE TABLE `cs157a`.`Search` (
-  `User ID` VARCHAR(255) NOT NULL,
-  `Item ID` INT NOT NULL,
+  `userID` VARCHAR(255) NOT NULL,
+  `itermID` INT NOT NULL,
   PRIMARY KEY (`userID`),
   UNIQUE INDEX `itermID_UNIQUE` (`itermID` ASC) VISIBLE);
   
@@ -119,7 +119,10 @@ insert into payingusers values (1234, 'a', '2020-10-12', 'VISA'), (3123, 'a', '2
 
 insert into itemns values ();
 
-insert into addresses values ();
+insert into addresses values (2150, 'Monterey Hwy', 'San Jose', 'CA', 95112), (989, 'Story Rd', 'San Jose', 'CA', 95122), (979, 'Story Rd', 'San Jose', 'CA', 95122), (969, 'Story Rd', 'San Jose', 'CA', 95122), 
+(959, 'Story Rd', 'San Jose', 'CA', 95122), (949, 'Story Rd', 'San Jose', 'CA', 95122), (939, 'Story Rd', 'San Jose', 'CA', 95122), (929, 'Story Rd', 'San Jose', 'CA', 95122), 
+(2191, 'Monterey Hwy', 'San Jose', 'CA', 95125), (2131, 'Monterey Hwy', 'San Jose', 'CA', 95112), (2121, 'Monterey Hwy', 'San Jose', 'CA', 95112), (2011, 'Monterey Hwy', 'San Jose', 'CA', 95112),
+(370, 'Umbarger Rd', 'San Jose', 'CA', 95111), (354, 'Umbarger Rd', 'San Jose', 'CA', 95111), (230, 'Umbarger Rd', 'San Jose', 'CA', 95111);
 
 insert into HaveU values ();
 
