@@ -105,11 +105,32 @@ CREATE TABLE `cs157a`.`Search` (
   UNIQUE INDEX `itermID_UNIQUE` (`itermID` ASC) VISIBLE);
   
   /*insert data to table*/
-insert into users values ('a', 'pw', 'a', 'a', 1234567890), ('b', 'pw', 'b', 'b', 1234567890), ('c', 'pw', 'c', 'c', 1234567890), ('d', 'pw', 'd', 'd', 1234567890), ('e', 'pw', 'e', 'e', 1234567890), 
-('f', 'pw', 'f', 'f', 1234567890), ('g', 'pw', 'g', 'g', 1234567890), ('h', 'pw', 'h', 'h', 1234567890), ('j', 'pw', 'j', 'j', 1234567890), ('i', 'pw', 'i', 'i', 1234567890), 
-('k', 'pw', 'k', 'k', 1234567890), ('l', 'pw', 'l', 'l', 1234567890), ('m', 'pw', 'm', 'm', 1234567890), ('n', 'pw', 'n', 'n', 1234567890), ('o', 'pw', 'o', 'o', 1234567890);
+insert into users values 
+('lucky001', 'qwert1234', 'Sophia', 'Smith', 1234567890),
+('lucky002', 'yuiop1234', 'Jacob', 'Johnson', 1234567891), 
+('lucky003', 'asdfg5678', 'Emma', 'Williams', 1234567892), 
+('lucky004', 'hjklm5678', 'Mia', 'Jones', 1234567893), 
+('lucky005', 'qwert1234', 'Addison', 'Brown', 1234567894), 
+('lucky006', 'yuiop1234', 'Lily', 'Davis', 1234567895), 
+('lucky007', 'asdfg5678', 'Grace', 'Miller', 1234567896), 
+('lucky008', 'yuiop1234', 'Avery', 'Wilson', 1234567897), 
+('lucky009', 'asdfg5678', 'Sofia', 'Thomas', 1234567898), 
+('lucky010', 'yuiop1234', 'Aubrey', 'White', 1234567899), 
+('lucky011', 'asdfg5678', 'Lillian', 'Harris', 1234567880), 
+('lucky012', 'hjklm5678', 'Zoey', 'Martin', 1234567881), 
+('lucky013', 'hjklm5678', 'Leah', 'Baker', 1234567882), 
+('lucky014', 'yuiop1234', 'Anna', 'Adams', 1234567883), 
+('lucky015', 'hjklm5678', 'Ashley', 'Cooper', 1234567884);
   
-insert into suppliers values (1, 'a'), (2, 'b'), (3, 'c'), (4, 'd'), (5, 'e'), (6, 'f'), (7, 'g'), (8, 'h'), (9, 'j'), (10, 'i'), (11, 'k'), (12, 'l'), (13, 'm'), (14, 'n'), (15, 'o');
+insert into suppliers values 
+(11111, 'Tincidunt Limited'), (11112, 'Nullam Vitae Diam Institute'), 
+(11113, 'Natoque Limited'), (11114, 'Nam LLP'), 
+(11115, 'Lorem Idsum Associates'), (11116, 'A Tortor Nunc Company'), 
+(11117, 'Accumsan Laoreet LLP'), (11118, 'Non Foundation'), 
+(11119, 'Molex Inc.'), (11120, 'NEC Corporation'), 
+(11121, 'Prent Corporation'), (11122, 'NVIDIA Coporation'), 
+(11123, 'Multek Corporation'), (11124, 'Nan Ya Printed Circuit Board Corporation'), 
+(11125, 'Nippon Mektron, Ltd.');
 
 insert into supply values (1, 'a'), (2, 'b'), (3, 'c'), (4, 'd'), (5, 'e'), (6, 'f'), (7, 'g'), (8, 'h'), (9, 'j'), (10, 'i'), (11, 'k'), (12, 'l'), (13, 'm'), (14, 'n'), (15, 'o');
 
@@ -117,12 +138,40 @@ insert into payingusers values (1234, 'a', '2020-10-12', 'VISA'), (3123, 'a', '2
 (4567, 'a', '2020-10-12', 'VISA'), (2345, 'a', '2020-10-12', 'VISA'), (1345, 'a', '2020-10-12', 'VISA'), (7777, 'a', '2020-10-12', 'VISA'), (4444, 'a', '2020-10-12', 'VISA'),
 (7890, 'a', '2020-10-12', 'VISA'), (1789, 'a', '2020-10-12', 'VISA'), (1567, 'a', '2020-10-12', 'VISA'), (6666, 'a', '2020-10-12', 'VISA'), (5555, 'a', '2020-10-12', 'VISA');
 
-insert into itemns values ();
+insert into itemns values 
+(1111, 'Cut and Run', 100, 10.99),
+(1112, 'My big Fat Fake Wedding', 199, 2.99),
+(1113, 'Winter Cottage', 100, 1.99),
+(1114, 'Room to Breathe', 100, 4.99),
+(1115, 'The Vine Witch', 100, 6.99),
+(1116, 'Under Lying', 100, 7.99),
+(1117, 'Pour Judgment', 100, 10.99),
+(1118, 'Hello, Darkness', 100, 3.99),
+(1119, 'The Dutch House: A Novel', 100, 5.99),
+(1120, 'Lisianthus Women Belt Buckle Fedora Hat', 100, 16.45),
+(1121, 'Tommy Hilfiger Mens Ardin Dad Hat', 100, 19.99),
+(1122, 'Kangol Unisex Tropic 504 Ventair', 100, 33.15),
+(1123, 'Carhartt Womens Odessa Cap', 100, 14.99),
+(1124, 'TGD Hat Unisex Beanie Warmer Wind Guard Cap', 100, 10.99),
+(1125, 'Tommy Hilfiger Mens Dad Hat Avery', 100, 19.99);
 
-insert into addresses values (2150, 'Monterey Hwy', 'San Jose', 'CA', 95112), (989, 'Story Rd', 'San Jose', 'CA', 95122), (979, 'Story Rd', 'San Jose', 'CA', 95122), (969, 'Story Rd', 'San Jose', 'CA', 95122), 
-(959, 'Story Rd', 'San Jose', 'CA', 95122), (949, 'Story Rd', 'San Jose', 'CA', 95122), (939, 'Story Rd', 'San Jose', 'CA', 95122), (929, 'Story Rd', 'San Jose', 'CA', 95122), 
-(2191, 'Monterey Hwy', 'San Jose', 'CA', 95125), (2131, 'Monterey Hwy', 'San Jose', 'CA', 95112), (2121, 'Monterey Hwy', 'San Jose', 'CA', 95112), (2011, 'Monterey Hwy', 'San Jose', 'CA', 95112),
-(370, 'Umbarger Rd', 'San Jose', 'CA', 95111), (354, 'Umbarger Rd', 'San Jose', 'CA', 95111), (230, 'Umbarger Rd', 'San Jose', 'CA', 95111);
+
+insert into addresses values 
+(2150, 'Monterey Hwy', 'San Jose', 'CA', 95112), 
+(989, 'Story Rd', 'San Jose', 'CA', 95122), 
+(979, 'Story Rd', 'San Jose', 'CA', 95122), 
+(969, 'Story Rd', 'San Jose', 'CA', 95122), 
+(959, 'Story Rd', 'San Jose', 'CA', 95122), 
+(949, 'Story Rd', 'San Jose', 'CA', 95122), 
+(939, 'Story Rd', 'San Jose', 'CA', 95122), 
+(929, 'Story Rd', 'San Jose', 'CA', 95122), 
+(2191, 'Monterey Hwy', 'San Jose', 'CA', 95125), 
+(2131, 'Monterey Hwy', 'San Jose', 'CA', 95112), 
+(2121, 'Monterey Hwy', 'San Jose', 'CA', 95112), 
+(2011, 'Monterey Hwy', 'San Jose', 'CA', 95112),
+(370, 'Umbarger Rd', 'San Jose', 'CA', 95111), 
+(354, 'Umbarger Rd', 'San Jose', 'CA', 95111), 
+(230, 'Umbarger Rd', 'San Jose', 'CA', 95111);
 
 insert into HaveU values ();
 
