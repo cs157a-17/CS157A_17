@@ -69,8 +69,8 @@ CREATE TABLE `cs157a`.`carts` (
   PRIMARY KEY (`Cart ID`));
 
 CREATE TABLE `cs157a`.`HaveU` (
-  `userID` INT NOT NULL,
-  `addressesID` INT NOT NULL,
+  `User ID` VARCHAR(255) NOT NULL,
+  `AddressesID` INT NOT NULL,
   PRIMARY KEY (`userID`),
   UNIQUE INDEX `addressesID_UNIQUE` (`addressesID` ASC) VISIBLE);
 
@@ -81,7 +81,7 @@ CREATE TABLE `cs157a`.`HavePU` (
   UNIQUE INDEX `AddressesID_UNIQUE` (`AddressesID` ASC) VISIBLE);
 
 CREATE TABLE `cs157a`.`HaveS` (
-  `SppliserID` INT NOT NULL,
+  `SuppliserID` INT NOT NULL,
   `AddressesID` INT NOT NULL,
   PRIMARY KEY (`SppliserID`),
   UNIQUE INDEX `AddressesID_UNIQUE` (`AddressesID` ASC) VISIBLE);
@@ -132,11 +132,18 @@ insert into suppliers values
 (11123, 'Multek Corporation'), (11124, 'Nan Ya Printed Circuit Board Corporation'), 
 (11125, 'Nippon Mektron, Ltd.');
 
-insert into supply values (1, 'a'), (2, 'b'), (3, 'c'), (4, 'd'), (5, 'e'), (6, 'f'), (7, 'g'), (8, 'h'), (9, 'j'), (10, 'i'), (11, 'k'), (12, 'l'), (13, 'm'), (14, 'n'), (15, 'o');
+insert into supply values 
+(1, 'a'), (2, 'b'), (3, 'c'), (4, 'd'), (5, 'e'), (6, 'f'), (7, 'g'), (8, 'h'), (9, 'j'), (10, 'i'), (11, 'k'), (12, 'l'), (13, 'm'), (14, 'n'), (15, 'o');
 
-insert into payingusers values (1234, 'a', '2020-10-12', 'VISA'), (3123, 'a', '2020-10-12', 'VISA'), (1111, 'a', '2020-10-12', 'VISA'), (2222, 'a', '2020-10-12', 'VISA'), (3333, 'a', '2020-10-12', 'VISA'),
-(4567, 'a', '2020-10-12', 'VISA'), (2345, 'a', '2020-10-12', 'VISA'), (1345, 'a', '2020-10-12', 'VISA'), (7777, 'a', '2020-10-12', 'VISA'), (4444, 'a', '2020-10-12', 'VISA'),
-(7890, 'a', '2020-10-12', 'VISA'), (1789, 'a', '2020-10-12', 'VISA'), (1567, 'a', '2020-10-12', 'VISA'), (6666, 'a', '2020-10-12', 'VISA'), (5555, 'a', '2020-10-12', 'VISA');
+insert into payingusers values 
+(1234, 'Sophia Smith', '2020-10-12', 'VISA'), (3123, 'Jacob Johnson', '2020-10-12', 'VISA'), 
+(1111, 'Emma Williams', '2020-10-12', 'VISA'), (2222, 'Mia Jones', '2020-10-12', 'VISA'), 
+(3333, 'Addison Brown', '2020-10-12', 'VISA'), (4567, 'Lily Davis', '2020-10-12', 'VISA'), 
+(2345, 'Grace Miller', '2020-10-12', 'VISA'), (1345, 'Avery Wilson', '2020-10-12', 'VISA'), 
+(7777, 'Sofia Thomas', '2020-10-12', 'VISA'), (4444, 'Aubrey White', '2020-10-12', 'VISA'),
+(7890, 'Lillian Harris', '2020-10-12', 'VISA'), (1789, 'Zoey Martin', '2020-10-12', 'VISA'), 
+(1567, 'Leah Baker', '2020-10-12', 'VISA'), (6666, 'Anna Adams', '2020-10-12', 'VISA'), 
+(5555, 'Ashley Cooper', '2020-10-12', 'VISA');
 
 insert into itemns values 
 (1111, 'Cut and Run', 100, 10.99),
@@ -173,7 +180,22 @@ insert into addresses values
 (354, 'Umbarger Rd', 'San Jose', 'CA', 95111), 
 (230, 'Umbarger Rd', 'San Jose', 'CA', 95111);
 
-insert into HaveU values ();
+insert into HaveU values 
+('lucky001', 2150),
+('lucky002', 989),
+('lucky003', 979),
+('lucky004', 969),
+('lucky005', 959),
+('lucky006', 949),
+('lucky007', 939),
+('lucky008', 929),
+('lucky009', 2191),
+('lucky010', 2131),
+('lucky011', 2121),
+('lucky012', 370),
+('lucky013', 354),
+('lucky014', 230),
+('lucky015', 2151);
 
 insert into HavePU values ();
 
