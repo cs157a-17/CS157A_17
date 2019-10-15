@@ -133,7 +133,9 @@ insert into suppliers values
 (11125, 'Nippon Mektron, Ltd.');
 
 insert into supply values 
-(1, 'a'), (2, 'b'), (3, 'c'), (4, 'd'), (5, 'e'), (6, 'f'), (7, 'g'), (8, 'h'), (9, 'j'), (10, 'i'), (11, 'k'), (12, 'l'), (13, 'm'), (14, 'n'), (15, 'o');
+(1111, 11111, '2019-11-20'), (1112, 11112, '2019-11-20'), (1113, 11113, '2019-11-20'), (1114, 11114, '2019-11-20'), (1115, 11115, '2019-11-20'), 
+(1116, 11116, '2019-11-20'), (1117, 11117, '2019-11-20'), (1118, 11118, '2019-11-20'), (1119, 11119, '2019-11-20'), (1120, 11120, '2019-11-20'), 
+(1121, 11121, '2019-11-20'), (1122, 11122, '2019-11-20'), (1123, 11123, '2019-11-20'), (1124, 11124, '2019-11-20'), (1125, 11125, '2019-11-20');
 
 insert into payingusers values 
 (1234, 'Sophia Smith', '2020-10-12', 'VISA'), (3123, 'Jacob Johnson', '2020-10-12', 'VISA'), 
@@ -146,22 +148,21 @@ insert into payingusers values
 (5555, 'Ashley Cooper', '2020-10-12', 'VISA');
 
 insert into items values 
-(1111, 'Cut and Run', 100, 10.99),
-(1112, 'My big Fat Fake Wedding', 199, 2.99),
-(1113, 'Winter Cottage', 100, 1.99),
-(1114, 'Room to Breathe', 100, 4.99),
-(1115, 'The Vine Witch', 100, 6.99),
-(1116, 'Under Lying', 100, 7.99),
-(1117, 'Pour Judgment', 100, 10.99),
-(1118, 'Hello, Darkness', 100, 3.99),
-(1119, 'The Dutch House: A Novel', 100, 5.99),
-(1120, 'Lisianthus Women Belt Buckle Fedora Hat', 100, 16.45),
-(1121, 'Tommy Hilfiger Mens Ardin Dad Hat', 100, 19.99),
-(1122, 'Kangol Unisex Tropic 504 Ventair', 100, 33.15),
-(1123, 'Carhartt Womens Odessa Cap', 100, 14.99),
-(1124, 'TGD Hat Unisex Beanie Warmer Wind Guard Cap', 100, 10.99),
-(1125, 'Tommy Hilfiger Mens Dad Hat Avery', 100, 19.99);
-
+(1111, 'Cut and Run', NULL, NULL, 100, 10.99, NULL),
+(1112, 'My big Fat Fake Wedding', NULL, NULL, 199, 2.99, NULL),
+(1113, 'Winter Cottage', NULL, NULL, 100, 1.99, NULL),
+(1114, 'Room to Breathe', NULL, NULL, 100, 4.99, NULL),
+(1115, 'The Vine Witch', NULL, NULL, 100, 6.99, NULL),
+(1116, 'Under Lying', NULL, NULL, 100, 7.99, NULL),
+(1117, 'Pour Judgment', NULL, NULL, 100, 10.99, NULL),
+(1118, 'Hello, Darkness', NULL, NULL, 100, 3.99, NULL),
+(1119, 'The Dutch House: A Novel', NULL, NULL, 100, 5.99, NULL),
+(1120, 'Lisianthus Women Belt Buckle Fedora Hat', NULL, NULL, 100, 16.45, NULL),
+(1121, 'Tommy Hilfiger Mens Ardin Dad Hat', NULL, NULL, 100, 19.99, NULL),
+(1122, 'Kangol Unisex Tropic 504 Ventair', NULL, NULL, 100, 33.15, NULL),
+(1123, 'Carhartt Womens Odessa Cap', NULL, NULL, 100, 14.99, NULL),
+(1124, 'TGD Hat Unisex Beanie Warmer Wind Guard Cap', NULL, NULL, 100, 10.99, NULL),
+(1125, 'Tommy Hilfiger Mens Dad Hat Avery', NULL, NULL, 100, 19.99, NULL);
 
 insert into addresses values 
 (2150, 'Monterey Hwy', 'San Jose', 'CA', 95112), 
