@@ -180,6 +180,23 @@ insert into addresses values
 (354, 'Umbarger Rd', 'San Jose', 'CA', 95111), 
 (230, 'Umbarger Rd', 'San Jose', 'CA', 95111);
 
+insert into carts values 
+(1, 'Cut and Run', 1, 10.99),
+(2, 'My big Fat Fake Wedding', 1, 2.99),
+(3, 'Winter Cottage', 1, 1.99),
+(4, 'Room to Breathe', 1, 4.99),
+(5, 'The Vine Witch', 1, 6.99),
+(6, 'Under Lying', 10, 79.9),
+(7, 'Pour Judgment', 10, 109.9),
+(8, 'Hello, Darkness', 10, 39.9),
+(9, 'The Dutch House: A Novel', 100, 599),
+(10, 'Lisianthus Women Belt Buckle Fedora Hat', 10, 164.5),
+(11, 'Tommy Hilfiger Mens Ardin Dad Hat', 1, 19.99),
+(12, 'Kangol Unisex Tropic 504 Ventair', 1, 33.15),
+(13, 'Carhartt Womens Odessa Cap', 1, 14.99),
+(14, 'TGD Hat Unisex Beanie Warmer Wind Guard Cap', 1, 10.99),
+(15, 'Tommy Hilfiger Mens Dad Hat Avery', 1, 19.99);
+
 insert into HaveU values 
 ('lucky001', 2150),
 ('lucky002', 989),
@@ -197,12 +214,47 @@ insert into HaveU values
 ('lucky014', 230),
 ('lucky015', 2151);
 
-insert into HavePU values ();
+insert into HavePU values (1234, 2150), (3123,989), (1111, 979), (2222, 969), 
+(3333, 959), (4567, 959), 
+(2345, 2150), (1345, 969), 
+(7777, 949), (4444, 939),
+(7890, 929), (1789, 370), 
+(1567, 354), (6666, 354), 
+(5555, 370);
 
-insert into HaveS values ();
+insert into HaveS values (11111, 2150), (11112,989), (11113, 979), (11114, 969), 
+(11114, 959), (11115, 959), 
+(11116, 2150), (11117, 969), 
+(11118, 949), (11118, 939),
+(11119, 929), (11116, 370), 
+(11112, 354), (11112, 354), 
+(11118, 370);
 
-insert into BuyIn values ();
+insert into BuyIn values (1111, 1),(1112, 1),(1113, 1),(1114, 1),(1115, 1),
+(1116, 3),(1117, 3),(1118, 3),(1119, 5),(1120, 5),(1121, 5),(1122, 6),
+(1123, 6),(1124, 6),(1125, 7);
 
-insert into Buy values ();
+insert into Buy values (1, 1234), (2, 3123), (3, 1111, 979), (4, 2222), 
+(5, 3333), (6, 4567), 
+(7, 2345), (8, 1345), 
+(9, 7777), (10, 4444),
+(11, 7890), (12, 1789), 
+(13, 1567), (14, 6666), 
+(15, 5555);
 
-insert into Search values ();
+insert into Search values 
+('lucky001', 1111),
+('lucky002', 1112), 
+('lucky003', 1113), 
+('lucky004', 1114), 
+('lucky005', 1115), 
+('lucky006', 1116), 
+('lucky007', 1117), 
+('lucky008', 1118), 
+('lucky009', 1119), 
+('lucky010', 1120), 
+('lucky011', 1121), 
+('lucky012', 1122), 
+('lucky013', 1123), 
+('lucky014', 1124), 
+('lucky015', 1125);
