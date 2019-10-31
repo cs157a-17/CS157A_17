@@ -3,7 +3,15 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Spartan Market' });
+  res.render('index');
+});
+
+router.post('/signup', function (req, res, next) {
+  res.redirect('/signup');
+});
+
+router.post('/login', function (req, res, next) {
+  res.redirect('/login');
 });
 
 /* GET user page. */
@@ -11,10 +19,9 @@ router.get('/signup', function(req, res, next) {
   res.render('signup');
 });
 
-// Add a new user  
-router.post('/signup/submit', function (req, res, next) {
-  console.log("Hello");
-  res.redirect('/');
+router.get('/login', function(req, res, next) {
+  res.render('login');
 });
+
 
 module.exports = router;

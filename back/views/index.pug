@@ -1,8 +1,20 @@
-doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    h1= title
-    p Welcome to #{title}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Spartan Market</title>
+  </head>
+  <body>
+    <h1>Welcome to Spartan Market</h1>
+
+    <div class="form">
+    <form action="/signup" method = "post">
+      <button>Sign Up</button>
+    </form>
+
+    <div class="form">
+    <form action="/login" method = "post">
+      <button>Login</button>
+    </form>
+
+  </body>
+</html>
