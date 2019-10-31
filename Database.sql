@@ -1,20 +1,20 @@
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
+-- ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password123';
 
-SELECT * FROM users;
-SELECT * FROM suppliers;
-SELECT * FROM supply;
-SELECT * FROM payingusers;
-SELECT * FROM items;
-SELECT * FROM carts;
-SELECT * FROM addresses;
-SELECT * FROM HaveU;
-SELECT * FROM HavePU;
-SELECT * FROM HaveS;
-SELECT * FROM BuyIn;
-SELECT * FROM Buy;
-SELECT * FROM Search;
+-- SELECT * FROM users;
+-- SELECT * FROM suppliers;
+-- SELECT * FROM supply;
+-- SELECT * FROM payingusers;
+-- SELECT * FROM items;
+-- SELECT * FROM carts;
+-- SELECT * FROM addresses;
+-- SELECT * FROM HaveU;
+-- SELECT * FROM HavePU;
+-- SELECT * FROM HaveS;
+-- SELECT * FROM BuyIn;
+-- SELECT * FROM Buy;
+-- SELECT * FROM Search;
 
-
+use cs157a;
 
 /*create table*/
 CREATE TABLE `cs157a`.`users` (
@@ -81,9 +81,9 @@ CREATE TABLE `cs157a`.`HavePU` (
   UNIQUE INDEX `AddressesID_UNIQUE` (`AddressesID` ASC) VISIBLE);
 
 CREATE TABLE `cs157a`.`HaveS` (
-  `SuppliserID` INT NOT NULL,
+  `SupplierID` INT NOT NULL,
   `AddressesID` INT NOT NULL,
-  PRIMARY KEY (`SppliserID`),
+  PRIMARY KEY (`SupplierID`),
   UNIQUE INDEX `AddressesID_UNIQUE` (`AddressesID` ASC) VISIBLE);
 
 CREATE TABLE `cs157a`.`BuyIn` (
@@ -104,6 +104,7 @@ CREATE TABLE `cs157a`.`Search` (
   PRIMARY KEY (`userID`),
   UNIQUE INDEX `itermID_UNIQUE` (`itermID` ASC) VISIBLE);
   
+
   /*insert data to table*/
 insert into users values 
 ('lucky001', 'qwert1234', 'Sophia', 'Smith', 1234567890),
@@ -122,6 +123,7 @@ insert into users values
 ('lucky014', 'yuiop1234', 'Anna', 'Adams', 1234567883), 
 ('lucky015', 'hjklm5678', 'Ashley', 'Cooper', 1234567884);
   
+
 insert into suppliers values 
 (11111, 'Tincidunt Limited'), (11112, 'Nullam Vitae Diam Institute'), 
 (11113, 'Natoque Limited'), (11114, 'Nam LLP'), 
