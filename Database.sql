@@ -18,22 +18,22 @@ use cs157a;
 
 /*create table*/
 CREATE TABLE `cs157a`.`users` (
-  `User ID` VARCHAR(255) NOT NULL,
+  `UserID` VARCHAR(255) NOT NULL,
   `Password` VARCHAR(255) NOT NULL,
-  `First Name` VARCHAR(255) NOT NULL,
-  `Last Name` VARCHAR(255) NOT NULL,
-  `Phone Number` INT NOT NULL,
-  PRIMARY KEY (`User ID`));
+  `FirstName` VARCHAR(255) NOT NULL,
+  `LastName` VARCHAR(255) NOT NULL,
+  `PhoneNumber` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`UserID`));
   
 CREATE TABLE `cs157a`.`items` (
-  `Item ID` INT NOT NULL,
+  `ItemID` INT NOT NULL,
   `Name` VARCHAR(255) NOT NULL,
   `Description` VARCHAR(255) NULL,
   `Category` VARCHAR(255) NULL,
   `Stock` INT NOT NULL,
   `Price` DOUBLE NOT NULL,
   `Shipping Days` DATE NULL,
-  PRIMARY KEY (`Item ID`)); 
+  PRIMARY KEY (`ItemID`)); 
 
 CREATE TABLE `cs157a`.`payingusers` (
   `CardNumber` INT NOT NULL,
@@ -51,27 +51,27 @@ CREATE TABLE `cs157a`.`addresses` (
   PRIMARY KEY (`ID`));
   
 CREATE TABLE `cs157a`.`suppliers` (
-  `Supplier ID` INT NOT NULL,
+  `SupplierID` INT NOT NULL,
   `Name` VARCHAR(255) NOT NULL,  
-  PRIMARY KEY (`Supplier ID`));
+  PRIMARY KEY (`SupplierID`));
 
 CREATE TABLE `cs157a`.`supply` (
   `Item` INT NOT NULL,
   `Supplier` INT NOT NULL,
-  `Delivery Delays` DATE NOT NULL,
+  `DeliveryDelays` DATE NOT NULL,
   PRIMARY KEY (`Item`));
   
 CREATE TABLE `cs157a`.`carts` (
-  `Cart ID` INT NOT NULL,
+  `CartID` INT NOT NULL,
   `Items` VARCHAR(255) NOT NULL,
   `Quantity` INT NOT NULL,
   `Total price` INT NOT NULL,
-  PRIMARY KEY (`Cart ID`));
+  PRIMARY KEY (`CartID`));
 
 CREATE TABLE `cs157a`.`HaveU` (
-  `User ID` VARCHAR(255) NOT NULL,
+  `UserID` VARCHAR(255) NOT NULL,
   `AddressesID` INT NOT NULL,
-  PRIMARY KEY (`User ID`),
+  PRIMARY KEY (`UserID`),
   UNIQUE INDEX `addressesID_UNIQUE` (`addressesID` ASC) VISIBLE);
 
 CREATE TABLE `cs157a`.`HavePU` (
@@ -123,7 +123,6 @@ insert into users values
 ('lucky014', 'yuiop1234', 'Anna', 'Adams', 1234567883), 
 ('lucky015', 'hjklm5678', 'Ashley', 'Cooper', 1234567884);
   
-
 insert into suppliers values 
 (11111, 'Tincidunt Limited'), (11112, 'Nullam Vitae Diam Institute'), 
 (11113, 'Natoque Limited'), (11114, 'Nam LLP'), 

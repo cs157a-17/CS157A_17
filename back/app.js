@@ -1,27 +1,13 @@
 var createError = require('http-errors');
-const express = require('express');
-const mysql = require('mysql');
-const path = require('path');
+var express = require('express');
+var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const app = express();
+var app = express();
+var bodyParser = require('body-parser');
 
-var indexRouter = require('./routes/index');
-var demoRouter = require('./routes/demo');
-
-app.use('/', indexRouter);
-app.use('/demo', demoRouter);
-
-//Create connection
-const db = mysql.createConnection({
-    host: "localhost",
-    port: 3306,
-    user: "root",
-    password: "root",
-    database: "cs157a"
-})
-
-db.connect();
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,6 +18,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+require('./controllers/connector/mysql_conn').connect(function (err) {
+  if (!err) {
+    console.log("Database is connected ...");
+  } else {
+    console.log("Error connecting database ...");
+  }
+});
+
+//routes
+var indexRouter = require('./routes/index');
+var demoRouter = require('./routes/demo');
+
+app.use('/', indexRouter);
+app.use('/demo', demoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

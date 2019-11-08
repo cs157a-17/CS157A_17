@@ -1,17 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const mysql = require('mysql');
-
-//Create connection
-const db = mysql.createConnection({
-    host: "localhost",
-    port: 3306,
-    user: "root",
-    password: "root",
-    database: "cs157a"
-})
-
-db.connect()
+var db = require('../controllers/connector/mysql_conn');
 
 /* Demo. */
 router.get('/', function(req, res) {
