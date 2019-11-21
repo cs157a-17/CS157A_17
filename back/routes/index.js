@@ -45,7 +45,8 @@ router.post('/login', function (req, res, next) {
   db.query('SELECT * FROM users WHERE `UserID` = ?',[req.body.userid], function (error, results, fields) {
     if (results.length > 0) {
       if (results[0].Password == req.body.password) {
-        res.render('home', {name : results[0].FirstName});
+        user = results[0];
+        res.render('home', {user: user});
       } else {
         res.render('loginform', {message: "Password is wrong!"});
       }
