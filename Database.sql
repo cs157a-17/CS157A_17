@@ -28,7 +28,7 @@ CREATE TABLE `cs157a`.`users` (
 CREATE TABLE `cs157a`.`items` (
   `ItemID` INT NOT NULL,
   `Name` VARCHAR(255) NOT NULL,
-  `Description` VARCHAR(255) NULL,
+  `Description` VARCHAR(2550) NULL,
   `image` BLOB NULL,
   `Category` VARCHAR(255) NULL,
   `Stock` INT NOT NULL,
