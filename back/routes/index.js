@@ -4,7 +4,7 @@ var db = require('../controllers/connector/mysql_conn');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index');
+  res.render('landing');
 });
 
 //Page
