@@ -33,7 +33,7 @@ router.post('/signup', function (req, res, next) {
         if (error) {
           res.render('signupform');
         } else {
-          res.render('home', {name: req.body.firstname});
+          res.render('profile', {name: req.body.firstname});
         }
       });
     }
@@ -46,7 +46,7 @@ router.post('/login', function (req, res, next) {
     if (results.length > 0) {
       if (results[0].Password == req.body.password) {
         user = results[0];
-        res.render('home', {user: user});
+        res.render('profile', {user: user});
       } else {
         res.render('loginform', {message: "Password is wrong!"});
       }
