@@ -927,11 +927,13 @@ ol {
 -------------------------*/
 
 .product-filter-section {
+  padding-top: 40px;
   padding-bottom: 60px;
 }
 
 .product-filter-section .section-title {
-  margin-bottom: 70px;
+  /* margin-bottom: 70px; */
+  margin-bottom: 40px;
 }
 
 .product-filter-menu {
