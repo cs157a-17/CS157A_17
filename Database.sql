@@ -60,7 +60,7 @@ CREATE TABLE `cs157a`.`supply` (
   `ItemID` INT NOT NULL,
   `Supplier` INT NOT NULL,
   `DeliveryDelays` DATE NOT NULL,
-  PRIMARY KEY (`Item`));
+  PRIMARY KEY (`ItemID`));
   
 CREATE TABLE `cs157a`.`carts` (
   `CartID` INT NOT NULL,
