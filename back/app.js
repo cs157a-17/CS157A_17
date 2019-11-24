@@ -5,14 +5,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var app = express();
 var bodyParser = require('body-parser');
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+var session = require('express-session');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -27,12 +26,17 @@ require('./controllers/connector/mysql_conn').connect(function (err) {
   }
 });
 
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000 }
+}))
+
 //routes
 var indexRouter = require('./routes/index');
-var demoRouter = require('./routes/demo');
 
 app.use('/', indexRouter);
-app.use('/demo', demoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
