@@ -49,14 +49,16 @@
       <div class="container">
         <div class="row">
           <div class="offset-lg-4 col-lg-4 order-2 order-lg-1">
-            <img class="spartanhome" src="img/logo.png" alt="" />
-            <form class="login-form">
+            <img class="spartanhome" src="img/logo.png" alt=""/>
+            <form class="login-form" action="/login" method="post">
               <div class="text-center cf-title">Sign in to Spartan Market</div>
               <div class="row"></div>
+              if (message) 
+                <div class="alert alert-danger col-sm-12">#{message}</div>
               <div class="row user-inputs">
                 <div class="col-md-12">
-                  <input type="text" placeholder="Username" required />
-                  <input type="password" placeholder="Password" required />
+                  <input type="text" placeholder="Username" name ="userid" required />
+                  <input type="password" placeholder="Password" name="password" required />
                 </div>
               </div>
 
@@ -64,7 +66,7 @@
             </form>
             <div class="gapbelowsignin"></div>
             <div class="text-center">
-              <p>New to Spartan Market? <a href="#">Create an account</a>.</p>
+              <p>New to Spartan Market? <a href="registration">Create an account</a>.</p>
             </div>
           </div>
         </div>

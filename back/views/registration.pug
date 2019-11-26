@@ -51,16 +51,18 @@
         <div class="row">
           <div class="offset-lg-4 col-lg-4 order-2 order-lg-1">
             <img class="spartanhome" src="img/logo.png" alt="" />
-            <form class="login-form">
+            <form class="login-form" action="/signup" method ="post">
               <div class="text-center cf-title">Create an account</div>
               <div class="row"></div>
+              if (message) 
+                <div class="alert alert-danger col-sm-12">#{message}</div>
               <div class="row user-inputs">
                 <div class="col-md-12">
-                  <input type="text" placeholder="Username" required />
-                  <input type="password" placeholder="Password" required />
-                  <input type="text" placeholder="First Name" required />
-                  <input type="password" placeholder="Last Name" required />
-                  <input type="password" placeholder="Phone Number" required />
+                  <input type="text" placeholder="Username" name="userid" required />
+                  <input type="password" placeholder="Password" name="password" required />
+                  <input type="text" placeholder="First Name" name="firstname" required />
+                  <input type="text" placeholder="Last Name" name="lastname" required />
+                  <input type="text" placeholder="Phone Number" name="phonenumber" required />
                 </div>
               </div>
 
@@ -68,7 +70,7 @@
             </form>
             <div class="gapbelowsignin"></div>
             <div class="text-center">
-              <p>Already have an account? <a href="#">Sign in instead</a>.</p>
+              <p>Already have an account? <a href="landing">Sign in instead</a>.</p>
             </div>
           </div>
         </div>

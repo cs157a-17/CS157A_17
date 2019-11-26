@@ -3,16 +3,16 @@ var router = express.Router();
 var db = require('../controllers/connector/mysql_conn');
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index');
+router.get('/', checkauthorization, function (req, res, next) {
+  res.render('home');
 });
 
 //Page
-router.get('/signupform', function (req, res, next) {
-  res.render('signupform');
+router.get('/registration', checkunauthorization, function (req, res, next) {
+  res.render('registration');
 });
 
-router.post('/signup', function (req, res, next) {
+router.post('/signup', checkunauthorization, function (req, res, next) {
   var users = {
     "UserID":req.body.userid,
     "FirstName":req.body.firstname,
@@ -24,20 +24,20 @@ router.post('/signup', function (req, res, next) {
 
   db.query(sql, function (error, results, fields) {
     if (results.length) {
-      res.render('signupform', {message: "User ID already exists!"});
+      res.render('registration', {message: "User ID already exists!"});
     } else {
       db.query('INSERT INTO users SET ?',users, function (error, results, fields) {
-        res.render('loginform', {message: "Succesfully! Your account has been created."});
+        res.render('landing', {message: "Succesfully! Your account has been created."});
       });
     }
   });
 });
 
-router.get('/loginform', function (req, res, next) {
-  res.render('loginform');
+router.get('/landing', checkunauthorization, function (req, res, next) {
+  res.render('landing');
 });
 
-router.post('/login', function (req, res, next) {
+router.post('/login', checkunauthorization, function (req, res, next) {
   var userid = req.body.userid;
   var pass = req.body.password;
   var sql = "SELECT * FROM users WHERE UserID ='"+userid+"' and Password = '"+pass+"'";       
@@ -46,25 +46,37 @@ router.post('/login', function (req, res, next) {
     if (results.length) {
       req.session.userId = results[0].UserID;
       req.session.user = results[0];
-      res.redirect('profile');
+      res.redirect('/');
     } else {
-      res.render('loginform', {message: 'Wrong Credentials'});
+      res.render('landing', {message: 'Wrong Credentials'});
     }     
   }); 
 });
 
-router.get('/profile', function (req, res, next) {
-  if (req.session.userId == null){
-    res.redirect('loginform');
-  }
-
+router.get('/profile', checkauthorization, function (req, res, next) {
   res.render('profile', {user: req.session.user});  
 });
 
-router.get('/logout', function (req, res, next) {
+router.get('/logout', checkunauthorization, function (req, res, next) {
   req.session.destroy(function(err) {
-    res.redirect('loginform');
+    res.redirect('landing');
   })
 });
+
+function checkauthorization(req, res, next){
+  if (req.session.userId == null) {
+    res.redirect('landing');
+  } else {
+    next();
+  }
+};
+
+function checkunauthorization(req, res, next){
+  if (req.session.userId != null) {
+    res.redirect('/');
+  } else {
+    next();
+  }
+};
 
 module.exports = router;
