@@ -155,33 +155,33 @@ insert into cs157a.items values
 (1111, 'Cut and Run', 
 'Twin sisters separated by the past are reunited by unspeakable 
 crimes in New York Times bestselling author Mary Burton’s throat-clutching
- novel of suspense…', NULL, 'BOOK', 100, 10.99, NULL),
+ novel of suspense…', '\\Mac\Home\Documents\GitHub\CS157A_17\image\1.png', 'BOOK', 100, 10.99, NULL),
 (1112, 'My big Fat Fake Wedding',
 'Now a Washington Post and Amazon Charts Bestseller.
 #1 in the Spartan Store.
 He needs a wife.
-I need a husband.', NULL, 'BOOK', 199, 2.99, NULL),
+I need a husband.', '\\Mac\Home\Documents\GitHub\CS157A_17\image\2.png', 'BOOK', 199, 2.99, NULL),
 (1113, 'Winter Cottage', 'An Amazon Charts bestseller.
 A gripping novel about family secrets…and coming home for the first time.',
- NULL, 'BOOK', 100, 1.99, NULL),
+ '\\Mac\Home\Documents\GitHub\CS157A_17\image\3.png', 'BOOK', 100, 1.99, NULL),
 (1114, 'Room to Breathe', 
 'A funny, emotional novel full of southern charm about a mother and 
 daughter ready to start over. Liz Talley delivers. Her dialogue is crisp 
 and smart, her characters are vivid and real, her stories are unputdownable. 
-—Robyn Carr, New York Times bestselling author', NULL, 'BOOK', 100, 4.99, NULL),
+—Robyn Carr, New York Times bestselling author', '\\Mac\Home\Documents\GitHub\CS157A_17\image\4.png', 'BOOK', 100, 4.99, NULL),
 (1115, 'The Vine Witch', 
 'A young witch emerges from a curse to find her world upended in this 
 gripping fantasy of betrayal, vengeance, and self-discovery set in 
-turn-of-the-century France.', NULL, 'BOOK', 100, 6.99, NULL),
+turn-of-the-century France.', '\\Mac\Home\Documents\GitHub\CS157A_17\image\5.png', 'BOOK', 100, 6.99, NULL),
 (1116, 'Under Lying', 
 'In this gripping novel of suspense, the disappearance of a couple''s 
-baby daughter leaves everyone a suspect.', NULL, 'BOOK', 100, 7.99, NULL),
+baby daughter leaves everyone a suspect.', '\\Mac\Home\Documents\GitHub\CS157A_17\image\6.png', 'BOOK', 100, 7.99, NULL),
 (1117, 'Pour Judgment', 
-'A week of tits, booze, and fun in the sun? Where do I sign up?', NULL, 'BOOK', 100, 10.99, NULL),
+'A week of tits, booze, and fun in the sun? Where do I sign up?', '\\Mac\Home\Documents\GitHub\CS157A_17\image\7.png', 'BOOK', 100, 10.99, NULL),
 (1118, 'Hello, Darkness', 
 'From the #1 New York Times bestselling author of Seeing Red comes Hello, 
 Darkness, a brilliant, fast-paced tale about a woman haunted by her past 
-and caught in a nightmare that threatens to destroy her future.', NULL, 'BOOK', 100, 3.99, NULL),
+and caught in a nightmare that threatens to destroy her future.', '\\Mac\Home\Documents\GitHub\CS157A_17\image\8.png', 'BOOK', 100, 3.99, NULL),
 (1119, 'The Dutch House: A Novel', 'Audiobook performed by Tom Hanks.
 From the New York Times best-selling author of Commonwealth and State of 
 Wonder comes Ann Patchett''s most powerful novel to date: a richly moving 
@@ -189,14 +189,14 @@ story that explores the indelible bond between two siblings,
 the house of their childhood, and a past that will not let them go. 
 The Dutch House is the story of a paradise lost, a tour de force that 
 digs deeply into questions of inheritance, love, and forgiveness, 
-of how we want to see ourselves, and of who we really are.', NULL, 'BOOK', 100, 5.99, NULL),
+of how we want to see ourselves, and of who we really are.', '\\Mac\Home\Documents\GitHub\CS157A_17\image\9.png', 'BOOK', 100, 5.99, NULL),
 (1120, 'Lisianthus Women Belt Buckle Fedora Hat', 'Imported
 Material: 65% cotton, 35% polyester
 Adjustable strap inside; Hat Circumference: 56-58cm/22-22.8"; Brim Width: 6cm/2.36"
 Breathable, lightweight and comfortable for all-day wear
 Classic design with belt will make you so fashion, elegant and charming
 Perfect for lounging at the beach, clubbing, or simply casual everyday wear; 
-Makes a great gift for that fashionable on-trend friend of yours', NULL, 'CLOTHING', 100, 16.45, NULL),
+Makes a great gift for that fashionable on-trend friend of yours', '\\Mac\Home\Documents\GitHub\CS157A_17\image\10.png', 'CLOTHING', 100, 16.45, NULL),
 (1121, 'Tommy Hilfiger Mens Ardin Dad Hat', '100% Cotton
 Imported
 Adjustable closure
@@ -206,12 +206,12 @@ Chain stitch embroidered logo flag
 Adjustable metal buckle closure
 Six-panel construction with ventilating grommets
 Comfort and style make this Tommy Hilfiger hat perfect for every day wear. 
-This tommy cap is an essential that''s hard to beat', NULL, 'CLOTHING', 100, 19.99, NULL),
+This tommy cap is an essential that''s hard to beat', '\\Mac\Home\Documents\GitHub\CS157A_17\image\11.png', 'CLOTHING', 100, 19.99, NULL),
 (1122, 'Kangol Unisex Tropic 504 Ventair', '100% Polyester
 Made in the USA and Imported
 No Closure closure
 Hand Wash
-Mixed-knit flat cap featuring contrast logo embroidery at back', NULL, 'CLOTHING', 100, 33.15, NULL),
+Mixed-knit flat cap featuring contrast logo embroidery at back', '\\Mac\Home\Documents\GitHub\CS157A_17\image\12.png', 'CLOTHING', 100, 33.15, NULL),
 (1123, 'Carhartt Womens Odessa Cap', '100% Cotton
 Imported
 Hook and Loop closure
@@ -220,13 +220,13 @@ Hand Wash
 Carhartt force sweatband fights odors and features fast dry technology for quick wicking
 Light-structured, medium-profile cap with pre-curved visor
 Adjustable fit with hook-and-loop closure
-Leatherette Carhartt label sewn on front', NULL, 'CLOTHING', 100, 14.99, NULL),
+Leatherette Carhartt label sewn on front', '\\Mac\Home\Documents\GitHub\CS157A_17\image\13.png', 'CLOTHING', 100, 14.99, NULL),
 (1124, 'Funky Junque Solid Ribbed Beanie Slouchy Soft Stretch Cable Knit Warm Skull Cap', 
 'UNISEX: Great for both women and men. The classic knit beanie cap is extremely cool
 PERFECT FIT: One size fits most, combines plenty of stretch and a snug fit. This hat measures 8” long by 9” wide lying flat
 WHEN TO WEAR: Can be worn indoors or out. This beanie will keep your head and ears warm, even if it’s brutal outside.
 GREAT QUALITY: This beanie is very thick and 100% soft acrylic. It’s machine washable and should be hung to dry
-FUNKY JUNQUE: We carry many great items on Amazon like winter beanies, gloves, sun hats, baseball caps, scarves and more!', NULL, 'CLOTHING', 100, 10.99, NULL),
+FUNKY JUNQUE: We carry many great items on Amazon like winter beanies, gloves, sun hats, baseball caps, scarves and more!', '\\Mac\Home\Documents\GitHub\CS157A_17\image\14.png', 'CLOTHING', 100, 10.99, NULL),
 (1125, 'Tommy Hilfiger Mens Dad Hat Avery', 
 '100% Cotton
 Imported
@@ -239,7 +239,7 @@ Logo flag embroidery
 Adjustable strap closure
 Six-panel construction with ventilating grommets
 Comfort and style make this Tommy Hilfiger cap perfect for every day wear. 
-This tommy hat is an essential that is hard to beat', NULL, 'CLOTHING', 100, 19.99, NULL);
+This tommy hat is an essential that is hard to beat', '\\Mac\Home\Documents\GitHub\CS157A_17\image\15.png', 'CLOTHING', 100, 19.99, NULL);
 
 insert into addresses values 
 (2150, 'Monterey Hwy', 'San Jose', 'CA', 95112), 
