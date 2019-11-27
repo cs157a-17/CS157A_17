@@ -14,6 +14,8 @@
 -- SELECT * FROM Buy;
 -- SELECT * FROM Search;
 
+DROP SCHEMA IF EXISTS cs157a;
+CREATE SCHEMA cs157a;
 use cs157a;
 
 /*create table*/

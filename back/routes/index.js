@@ -57,7 +57,7 @@ router.get('/profile', checkauthorization, function (req, res, next) {
   res.render('profile', {user: req.session.user});  
 });
 
-router.get('/logout', checkunauthorization, function (req, res, next) {
+router.get('/logout', function (req, res, next) {
   req.session.destroy(function(err) {
     res.redirect('landing');
   })
