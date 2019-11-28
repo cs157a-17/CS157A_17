@@ -1,4 +1,4 @@
--- ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password123';
+-- ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
 
 -- SELECT * FROM users;
 -- SELECT * FROM suppliers;
