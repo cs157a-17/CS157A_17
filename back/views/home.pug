@@ -112,13 +112,15 @@
     <!-- </div> -->
     <!-- Header section end -->
 
-    <!-- letest product section -->
+    <!-- latest product section -->
     <section class="top-letest-product-section">
       <div class="container">
         <div class="section-title">
           <h2>LATEST PRODUCTS</h2>
         </div>
         <div class="product-slider owl-carousel">
+
+          - for(var i=0; i < items.length; i++) {
           <!-- 1 -->
           <div class="product-item">
             <div class="pi-pic">
@@ -128,125 +130,12 @@
               </div>
             </div>
             <div class="pi-text">
-              <h6>$35,00</h6>
-              <p>Flamboyant Pink Top</p>
+              <h6>$#{items[i].Price}</h6>
+              <p>#{items[i].Name}</p>
             </div>
-            <p>
-              Working on this product
-            </p>
+            <p>#{items[i].Description}</p>
           </div>
-          <!-- 2 -->
-          <div class="product-item">
-            <div class="pi-pic">
-              <img src="img/product/2.jpg" alt="" />
-              <div class="pi-links">
-                <a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-              </div>
-            </div>
-            <div class="pi-text">
-              <h6>$35.00</h6>
-              <p>Black and White Stripes Dress</p>
-            </div>
-            <p>
-              Working on this product
-            </p>
-          </div>
-          <!-- 3-->
-          <div class="product-item">
-            <div class="pi-pic">
-              <img src="img/product/3.jpg" alt="" />
-              <div class="pi-links">
-                <a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-              </div>
-            </div>
-            <div class="pi-text">
-              <h6>$35.00</h6>
-              <p>Flamboyant Pink Top</p>
-            </div>
-            <p>
-              Working on this product
-            </p>
-          </div>
-          <!-- 4 -->
-          <div class="product-item">
-            <div class="pi-pic">
-              <img src="img/product/4.jpg" alt="" />
-              <div class="pi-links">
-                <a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-              </div>
-            </div>
-            <div class="pi-text">
-              <h6>$35.00</h6>
-              <p>Flamboyant Pink Top</p>
-            </div>
-            <p>
-              Working on this product
-            </p>
-          </div>
-          <!-- 5 -->
-          <div class="product-item">
-            <div class="pi-pic">
-              <img src="img/product/6.jpg" alt="" />
-              <div class="pi-links">
-                <a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-              </div>
-            </div>
-            <div class="pi-text">
-              <h6>$35.00</h6>
-              <p>Flamboyant Pink Top</p>
-            </div>
-            <p>
-              Working on this product
-            </p>
-          </div>
-          <!-- 6 -->
-          <div class="product-item">
-            <div class="pi-pic">
-              <img src="img/product/6.jpg" alt="" />
-              <div class="pi-links">
-                <a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-              </div>
-            </div>
-            <div class="pi-text">
-              <h6>$35.00</h6>
-              <p>Flamboyant Pink Top</p>
-            </div>
-            <p>
-              Working on this product
-            </p>
-          </div>
-          <!-- 7 -->
-          <div class="product-item">
-            <div class="pi-pic">
-              <img src="img/product/6.jpg" alt="" />
-              <div class="pi-links">
-                <a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-              </div>
-            </div>
-            <div class="pi-text">
-              <h6>$35.00</h6>
-              <p>Flamboyant Pink Top</p>
-            </div>
-            <p>
-              Working on this product
-            </p>
-          </div>
-          <!-- 8 -->
-          <div class="product-item">
-            <div class="pi-pic">
-              <img src="img/product/6.jpg" alt="" />
-              <div class="pi-links">
-                <a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-              </div>
-            </div>
-            <div class="pi-text">
-              <h6>$35.00</h6>
-              <p>Flamboyant Pink Top</p>
-            </div>
-            <p>
-              Working on this product
-            </p>
-          </div>
+          - }
         </div>
       </div>
     </section>
@@ -261,8 +150,8 @@
             <div class="footer-widget about-widget">
               <h2>About</h2>
               <p>
-                We are passinate CS students at SJSU working with the great
-                Professor Wu to accomplish this project!
+                | We are passinate CS students at SJSU working with the great
+                | Professor Wu to accomplish this project!
               </p>
             </div>
           </div>
@@ -289,12 +178,12 @@
         <div class="container">
           <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
           <p class="text-white text-center mt-5">
-            Copyright &copy;
+            | Copyright &copy 
             script.
               document.write(new Date().getFullYear());
 
-            All rights reserved | This template is made with 
-            <i class="fa fa-heart-o" aria-hidden="true"></i> by
+            |  All rights reserved | This template is made with 
+            <i class="fa fa-heart-o" aria-hidden="true"></i> by 
             <a href="https://colorlib.com" target="_blank">Colorlib</a>
           </p>
           <p class="text-white text-center mt-5">ALL HAIL PROFESSOR WU!</p>

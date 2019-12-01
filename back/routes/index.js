@@ -4,7 +4,11 @@ var db = require('../controllers/connector/mysql_conn');
 
 /* GET home page. */
 router.get('/', checkauthorization, function (req, res, next) {
-  res.render('home');
+  var sql = "SELECT * FROM items";
+
+  db.query(sql, function(error, results, fields) {
+    res.render('home', {items: results});
+  });
 });
 
 //Page

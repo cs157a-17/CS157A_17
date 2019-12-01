@@ -31,11 +31,10 @@ CREATE TABLE `cs157a`.`items` (
   `ItemID` INT NOT NULL,
   `Name` VARCHAR(255) NOT NULL,
   `Description` VARCHAR(2550) NULL,
-  `image` BLOB NULL,
+  `Image` BLOB NULL,
   `Category` VARCHAR(255) NULL,
   `Stock` INT NOT NULL,
   `Price` DOUBLE NOT NULL,
-  `Shipping Days` DATE NULL,
   PRIMARY KEY (`ItemID`)); 
 
 CREATE TABLE `cs157a`.`payingusers` (
@@ -46,12 +45,12 @@ CREATE TABLE `cs157a`.`payingusers` (
   PRIMARY KEY (`CardNumber`));
   
 CREATE TABLE `cs157a`.`addresses` (
-  `ID` INT NOT NULL,
+  `AddressID` INT NOT NULL AUTO_INCREMENT,
   `Street` VARCHAR(255) NOT NULL,
   `City` VARCHAR(255) NOT NULL,
-  `State` VARCHAR(255) NOT NULL,
+  `State` VARCHAR(2) NOT NULL,
   `Zip` INT NOT NULL,
-  PRIMARY KEY (`ID`));
+  PRIMARY KEY (`AddressID`));
   
 CREATE TABLE `cs157a`.`suppliers` (
   `SupplierID` INT NOT NULL,
@@ -59,53 +58,36 @@ CREATE TABLE `cs157a`.`suppliers` (
   PRIMARY KEY (`SupplierID`));
 
 CREATE TABLE `cs157a`.`supply` (
-  `ItemID` INT NOT NULL,
-  `Supplier` INT NOT NULL,
-  `DeliveryDelays` DATE NOT NULL,
-  PRIMARY KEY (`ItemID`));
+  `ItemID` INT NOT NULL REFERENCES items(ItemID),
+  `SupplierID` INT NOT NULL REFERENCES suppliers(supplierID),
+  PRIMARY KEY (`ItemID`),
+  UNIQUE INDEX `SupplierID_UNIQUE` (`SupplierID` ASC) VISIBLE);
   
-CREATE TABLE `cs157a`.`carts` (
-  `CartID` INT NOT NULL,
-  `Items` VARCHAR(255) NOT NULL,
-  `Quantity` INT NOT NULL,
-  `Total price` INT NOT NULL,
-  PRIMARY KEY (`CartID`));
-
-CREATE TABLE `cs157a`.`HaveU` (
-  `UserID` VARCHAR(255) NOT NULL,
-  `AddressesID` INT NOT NULL,
+CREATE TABLE `cs157a`.`haveu` (
+  `UserID` VARCHAR(255) NOT NULL references users(UserID),
+  `AddressID` INT NOT NULL references addresses(AddressID),
   PRIMARY KEY (`UserID`),
-  UNIQUE INDEX `addressesID_UNIQUE` (`addressesID` ASC) VISIBLE);
+  UNIQUE INDEX `addressID_UNIQUE` (`addressID` ASC) VISIBLE);
 
-CREATE TABLE `cs157a`.`HavePU` (
-  `PayingUsersCardNumber` INT NOT NULL,
-  `AddressesID` INT NOT NULL,
-  PRIMARY KEY (`PayingUsersCardNumber`),
-  UNIQUE INDEX `AddressesID_UNIQUE` (`AddressesID` ASC) VISIBLE);
+CREATE TABLE `cs157a`.`havepu` (
+  `CardNumber` INT NOT NULL references payingusers(CardNumber),
+  `AddressID` INT NOT NULL references addresses(AddressID),
+  PRIMARY KEY (`CardNumber`),
+  UNIQUE INDEX `AddressID_UNIQUE` (`AddressID` ASC) VISIBLE);
 
-CREATE TABLE `cs157a`.`HaveS` (
-  `SupplierID` INT NOT NULL,
-  `AddressesID` INT NOT NULL,
+CREATE TABLE `cs157a`.`haveS` (
+  `SupplierID` INT NOT NULL REFERENCES suppliers(supplierID),
+  `AddressID` INT NOT NULL references addresses(AddressID),
   PRIMARY KEY (`SupplierID`),
-  UNIQUE INDEX `AddressesID_UNIQUE` (`AddressesID` ASC) VISIBLE);
+  UNIQUE INDEX `AddressID_UNIQUE` (`AddressID` ASC) VISIBLE);
 
-CREATE TABLE `cs157a`.`BuyIn` (
-  `itermID` INT NOT NULL,
-  `cartID` INT NOT NULL,
-  PRIMARY KEY (`itermID`),
-  UNIQUE INDEX `cartID_UNIQUE` (`cartID` ASC) VISIBLE);
-
-CREATE TABLE `cs157a`.`Buy` (
-  `cartID` INT NOT NULL,
-  `PayingUsersCardNumber` INT NOT NULL,
-  PRIMARY KEY (`cartID`),
-  UNIQUE INDEX `PayingUsersCardNumber_UNIQUE` (`PayingUsersCardNumber` ASC) VISIBLE);
-
-CREATE TABLE `cs157a`.`Search` (
-  `userID` VARCHAR(255) NOT NULL,
-  `itermID` INT NOT NULL,
-  PRIMARY KEY (`userID`),
-  UNIQUE INDEX `itermID_UNIQUE` (`itermID` ASC) VISIBLE);
+CREATE TABLE `cs157a`.`carts` (
+  `UserID` VARCHAR(255) NOT NULL references users(UserID),
+  `ItemID` INT NOT NULL REFERENCES items(ItemID),
+  `Quantity` INT NOT NULL,
+  `TotalPrice` INT NOT NULL,
+  PRIMARY KEY (`UserID`),
+  UNIQUE INDEX `ItemID_UNIQUE` (`ItemID` ASC) VISIBLE);
   
 
   /*insert data to table*/
@@ -137,9 +119,9 @@ insert into suppliers values
 (11125, 'Nippon Mektron, Ltd.');
 
 insert into supply values 
-(1111, 11111, '2019-11-20'), (1112, 11112, '2019-11-20'), (1113, 11113, '2019-11-20'), (1114, 11114, '2019-11-20'), (1115, 11115, '2019-11-20'), 
-(1116, 11116, '2019-11-20'), (1117, 11117, '2019-11-20'), (1118, 11118, '2019-11-20'), (1119, 11119, '2019-11-20'), (1120, 11120, '2019-11-20'), 
-(1121, 11121, '2019-11-20'), (1122, 11122, '2019-11-20'), (1123, 11123, '2019-11-20'), (1124, 11124, '2019-11-20'), (1125, 11125, '2019-11-20');
+(1111, 11111), (1112, 11112), (1113, 11113), (1114, 11114), (1115, 11115), 
+(1116, 11116), (1117, 11117), (1118, 11118), (1119, 11119), (1120, 11120), 
+(1121, 11121), (1122, 11122), (1123, 11123), (1124, 11124), (1125, 11125);
 
 insert into payingusers values 
 (1234, 'Sophia Smith', '2020-10-12', 'VISA'), (3123, 'Jacob Johnson', '2020-10-12', 'VISA'), 
@@ -155,33 +137,33 @@ insert into cs157a.items values
 (1111, 'Cut and Run', 
 'Twin sisters separated by the past are reunited by unspeakable 
 crimes in New York Times bestselling author Mary Burton’s throat-clutching
- novel of suspense…', '\\Mac\Home\Documents\GitHub\CS157A_17\image\1.png', 'BOOK', 100, 10.99, NULL),
+ novel of suspense…', '1.png', 'BOOK', 100, 10.99),
 (1112, 'My big Fat Fake Wedding',
 'Now a Washington Post and Amazon Charts Bestseller.
 #1 in the Spartan Store.
 He needs a wife.
-I need a husband.', '\\Mac\Home\Documents\GitHub\CS157A_17\image\2.png', 'BOOK', 199, 2.99, NULL),
+I need a husband.', '\\Mac\Home\Documents\GitHub\CS157A_17\image\2.png', 'BOOK', 199, 2.99),
 (1113, 'Winter Cottage', 'An Amazon Charts bestseller.
 A gripping novel about family secrets…and coming home for the first time.',
- '\\Mac\Home\Documents\GitHub\CS157A_17\image\3.png', 'BOOK', 100, 1.99, NULL),
+ '\\Mac\Home\Documents\GitHub\CS157A_17\image\3.png', 'BOOK', 100, 1.99),
 (1114, 'Room to Breathe', 
 'A funny, emotional novel full of southern charm about a mother and 
 daughter ready to start over. Liz Talley delivers. Her dialogue is crisp 
 and smart, her characters are vivid and real, her stories are unputdownable. 
-—Robyn Carr, New York Times bestselling author', '\\Mac\Home\Documents\GitHub\CS157A_17\image\4.png', 'BOOK', 100, 4.99, NULL),
+—Robyn Carr, New York Times bestselling author', '\\Mac\Home\Documents\GitHub\CS157A_17\image\4.png', 'BOOK', 100, 4.99),
 (1115, 'The Vine Witch', 
 'A young witch emerges from a curse to find her world upended in this 
 gripping fantasy of betrayal, vengeance, and self-discovery set in 
-turn-of-the-century France.', '\\Mac\Home\Documents\GitHub\CS157A_17\image\5.png', 'BOOK', 100, 6.99, NULL),
+turn-of-the-century France.', '\\Mac\Home\Documents\GitHub\CS157A_17\image\5.png', 'BOOK', 100, 6.99),
 (1116, 'Under Lying', 
 'In this gripping novel of suspense, the disappearance of a couple''s 
-baby daughter leaves everyone a suspect.', '\\Mac\Home\Documents\GitHub\CS157A_17\image\6.png', 'BOOK', 100, 7.99, NULL),
+baby daughter leaves everyone a suspect.', '\\Mac\Home\Documents\GitHub\CS157A_17\image\6.png', 'BOOK', 100, 7.99),
 (1117, 'Pour Judgment', 
-'A week of tits, booze, and fun in the sun? Where do I sign up?', '\\Mac\Home\Documents\GitHub\CS157A_17\image\7.png', 'BOOK', 100, 10.99, NULL),
+'A week of tits, booze, and fun in the sun? Where do I sign up?', '\\Mac\Home\Documents\GitHub\CS157A_17\image\7.png', 'BOOK', 100, 10.99),
 (1118, 'Hello, Darkness', 
 'From the #1 New York Times bestselling author of Seeing Red comes Hello, 
 Darkness, a brilliant, fast-paced tale about a woman haunted by her past 
-and caught in a nightmare that threatens to destroy her future.', '\\Mac\Home\Documents\GitHub\CS157A_17\image\8.png', 'BOOK', 100, 3.99, NULL),
+and caught in a nightmare that threatens to destroy her future.', '\\Mac\Home\Documents\GitHub\CS157A_17\image\8.png', 'BOOK', 100, 3.99),
 (1119, 'The Dutch House: A Novel', 'Audiobook performed by Tom Hanks.
 From the New York Times best-selling author of Commonwealth and State of 
 Wonder comes Ann Patchett''s most powerful novel to date: a richly moving 
@@ -189,14 +171,14 @@ story that explores the indelible bond between two siblings,
 the house of their childhood, and a past that will not let them go. 
 The Dutch House is the story of a paradise lost, a tour de force that 
 digs deeply into questions of inheritance, love, and forgiveness, 
-of how we want to see ourselves, and of who we really are.', '\\Mac\Home\Documents\GitHub\CS157A_17\image\9.png', 'BOOK', 100, 5.99, NULL),
+of how we want to see ourselves, and of who we really are.', '\\Mac\Home\Documents\GitHub\CS157A_17\image\9.png', 'BOOK', 100, 5.99),
 (1120, 'Lisianthus Women Belt Buckle Fedora Hat', 'Imported
 Material: 65% cotton, 35% polyester
 Adjustable strap inside; Hat Circumference: 56-58cm/22-22.8"; Brim Width: 6cm/2.36"
 Breathable, lightweight and comfortable for all-day wear
 Classic design with belt will make you so fashion, elegant and charming
 Perfect for lounging at the beach, clubbing, or simply casual everyday wear; 
-Makes a great gift for that fashionable on-trend friend of yours', '\\Mac\Home\Documents\GitHub\CS157A_17\image\10.png', 'CLOTHING', 100, 16.45, NULL),
+Makes a great gift for that fashionable on-trend friend of yours', '\\Mac\Home\Documents\GitHub\CS157A_17\image\10.png', 'CLOTHING', 100, 16.45),
 (1121, 'Tommy Hilfiger Mens Ardin Dad Hat', '100% Cotton
 Imported
 Adjustable closure
@@ -206,12 +188,12 @@ Chain stitch embroidered logo flag
 Adjustable metal buckle closure
 Six-panel construction with ventilating grommets
 Comfort and style make this Tommy Hilfiger hat perfect for every day wear. 
-This tommy cap is an essential that''s hard to beat', '\\Mac\Home\Documents\GitHub\CS157A_17\image\11.png', 'CLOTHING', 100, 19.99, NULL),
+This tommy cap is an essential that''s hard to beat', '\\Mac\Home\Documents\GitHub\CS157A_17\image\11.png', 'CLOTHING', 100, 19.99),
 (1122, 'Kangol Unisex Tropic 504 Ventair', '100% Polyester
 Made in the USA and Imported
 No Closure closure
 Hand Wash
-Mixed-knit flat cap featuring contrast logo embroidery at back', '\\Mac\Home\Documents\GitHub\CS157A_17\image\12.png', 'CLOTHING', 100, 33.15, NULL),
+Mixed-knit flat cap featuring contrast logo embroidery at back', '\\Mac\Home\Documents\GitHub\CS157A_17\image\12.png', 'CLOTHING', 100, 33.15),
 (1123, 'Carhartt Womens Odessa Cap', '100% Cotton
 Imported
 Hook and Loop closure
@@ -220,13 +202,13 @@ Hand Wash
 Carhartt force sweatband fights odors and features fast dry technology for quick wicking
 Light-structured, medium-profile cap with pre-curved visor
 Adjustable fit with hook-and-loop closure
-Leatherette Carhartt label sewn on front', '\\Mac\Home\Documents\GitHub\CS157A_17\image\13.png', 'CLOTHING', 100, 14.99, NULL),
+Leatherette Carhartt label sewn on front', '\\Mac\Home\Documents\GitHub\CS157A_17\image\13.png', 'CLOTHING', 100, 14.99),
 (1124, 'Funky Junque Solid Ribbed Beanie Slouchy Soft Stretch Cable Knit Warm Skull Cap', 
 'UNISEX: Great for both women and men. The classic knit beanie cap is extremely cool
 PERFECT FIT: One size fits most, combines plenty of stretch and a snug fit. This hat measures 8” long by 9” wide lying flat
 WHEN TO WEAR: Can be worn indoors or out. This beanie will keep your head and ears warm, even if it’s brutal outside.
 GREAT QUALITY: This beanie is very thick and 100% soft acrylic. It’s machine washable and should be hung to dry
-FUNKY JUNQUE: We carry many great items on Amazon like winter beanies, gloves, sun hats, baseball caps, scarves and more!', '\\Mac\Home\Documents\GitHub\CS157A_17\image\14.png', 'CLOTHING', 100, 10.99, NULL),
+FUNKY JUNQUE: We carry many great items on Amazon like winter beanies, gloves, sun hats, baseball caps, scarves and more!', '\\Mac\Home\Documents\GitHub\CS157A_17\image\14.png', 'CLOTHING', 100, 10.99),
 (1125, 'Tommy Hilfiger Mens Dad Hat Avery', 
 '100% Cotton
 Imported
@@ -239,101 +221,72 @@ Logo flag embroidery
 Adjustable strap closure
 Six-panel construction with ventilating grommets
 Comfort and style make this Tommy Hilfiger cap perfect for every day wear. 
-This tommy hat is an essential that is hard to beat', '\\Mac\Home\Documents\GitHub\CS157A_17\image\15.png', 'CLOTHING', 100, 19.99, NULL);
+This tommy hat is an essential that is hard to beat', '\\Mac\Home\Documents\GitHub\CS157A_17\image\15.png', 'CLOTHING', 100, 19.99);
 
 insert into addresses values 
-(2150, 'Monterey Hwy', 'San Jose', 'CA', 95112), 
-(989, 'Story Rd', 'San Jose', 'CA', 95122), 
-(979, 'Story Rd', 'San Jose', 'CA', 95122), 
-(969, 'Story Rd', 'San Jose', 'CA', 95122), 
-(959, 'Story Rd', 'San Jose', 'CA', 95122), 
-(949, 'Story Rd', 'San Jose', 'CA', 95122), 
-(939, 'Story Rd', 'San Jose', 'CA', 95122), 
-(929, 'Story Rd', 'San Jose', 'CA', 95122), 
-(2191, 'Monterey Hwy', 'San Jose', 'CA', 95125), 
-(2131, 'Monterey Hwy', 'San Jose', 'CA', 95112), 
-(2121, 'Monterey Hwy', 'San Jose', 'CA', 95112), 
-(2011, 'Monterey Hwy', 'San Jose', 'CA', 95112),
-(370, 'Umbarger Rd', 'San Jose', 'CA', 95111), 
-(354, 'Umbarger Rd', 'San Jose', 'CA', 95111), 
-(230, 'Umbarger Rd', 'San Jose', 'CA', 95111);
+(1, '2150 Monterey Hwy', 'San Jose', 'CA', 95112),
+(2, '989 Story Rd', 'San Jose', 'CA', 95122), 
+(3, '979 Story Rd', 'San Jose', 'CA', 95122), 
+(4, '969 Story Rd', 'San Jose', 'CA', 95122), 
+(5, '959 Story Rd', 'San Jose', 'CA', 95122), 
+(6, '949 Story Rd', 'San Jose', 'CA', 95122), 
+(7, '939 Story Rd', 'San Jose', 'CA', 95122), 
+(8, '929 Story Rd', 'San Jose', 'CA', 95122), 
+(9, '2191 Monterey Hwy', 'San Jose', 'CA', 95125), 
+(10, '2131 Monterey Hwy', 'San Jose', 'CA', 95112), 
+(11, '2121 Monterey Hwy', 'San Jose', 'CA', 95112), 
+(12, '2011 Monterey Hwy', 'San Jose', 'CA', 95112),
+(13, '370 Umbarger Rd', 'San Jose', 'CA', 95111), 
+(14, '354 Umbarger Rd', 'San Jose', 'CA', 95111), 
+(15, '230 Umbarger Rd', 'San Jose', 'CA', 95111);
 
 insert into carts values 
-(1, 'Cut and Run', 1, 10.99),
-(2, 'My big Fat Fake Wedding', 1, 2.99),
-(3, 'Winter Cottage', 1, 1.99),
-(4, 'Room to Breathe', 1, 4.99),
-(5, 'The Vine Witch', 1, 6.99),
-(6, 'Under Lying', 10, 79.9),
-(7, 'Pour Judgment', 10, 109.9),
-(8, 'Hello, Darkness', 10, 39.9),
-(9, 'The Dutch House: A Novel', 100, 599),
-(10, 'Lisianthus Women Belt Buckle Fedora Hat', 10, 164.5),
-(11, 'Tommy Hilfiger Mens Ardin Dad Hat', 1, 19.99),
-(12, 'Kangol Unisex Tropic 504 Ventair', 1, 33.15),
-(13, 'Carhartt Womens Odessa Cap', 1, 14.99),
-(14, 'TGD Hat Unisex Beanie Warmer Wind Guard Cap', 1, 10.99),
-(15, 'Tommy Hilfiger Mens Dad Hat Avery', 1, 19.99);
+(1, 1111, 1, 10.99),
+(2, 1112, 1, 2.99),
+(3, 1113, 1, 1.99),
+(4, 1114, 1, 4.99),
+(5, 1115, 1, 6.99),
+(6, 1116, 10, 79.9),
+(7, 1117, 10, 109.9),
+(8, 1118, 10, 39.9),
+(9, 1119, 100, 599),
+(10, 1120, 10, 164.5),
+(11, 1121, 1, 19.99),
+(12, 1122, 1, 33.15),
+(13, 1123, 1, 14.99),
+(14, 1124, 1, 10.99),
+(15, 1125, 1, 19.99);
 
-insert into HaveU values 
-('lucky001', 2150),
-('lucky002', 989),
-('lucky003', 979),
-('lucky004', 969),
-('lucky005', 959),
-('lucky006', 949),
-('lucky007', 939),
-('lucky008', 929),
-('lucky009', 2191),
-('lucky010', 2131),
-('lucky011', 2121),
-('lucky012', 370),
-('lucky013', 354),
-('lucky014', 230),
-('lucky015', 2151);
+insert into haveu values 
+('lucky001', 1),
+('lucky002', 2),
+('lucky003', 3),
+('lucky004', 4),
+('lucky005', 5),
+('lucky006', 6),
+('lucky007', 7),
+('lucky008', 8),
+('lucky009', 9),
+('lucky010', 10),
+('lucky011', 11),
+('lucky012', 12),
+('lucky013', 13),
+('lucky014', 14),
+('lucky015', 15);
 
-insert into HavePU values 
-(1234, 2150), (3123,989), (1111, 979), (2222, 969), 
-(3333, 959), (4567, 949), 
-(2345, 2151), (1345, 939), 
-(7777, 929), (4444, 919),
-(7890, 899), (1789, 370), 
-(1567, 355), (6666, 354), 
-(5555, 371);
+insert into havepu values 
+(1234, 1), (3123,2), (1111, 3), (2222, 4), 
+(3333, 5), (4567, 6), 
+(2345, 7), (1345, 8), 
+(7777, 9), (4444, 10),
+(7890, 11), (1789, 12), 
+(1567, 13), (6666, 14), 
+(5555, 15);
 
-insert into HaveS values (11111, 2150), (11112,989), (11113, 979), (11114, 969), 
-(11120, 959), (11115, 949), 
-(11116, 2151), (11117, 899), 
-(11118, 939), (11121, 929),
-(11119, 919), (11122, 370), 
-(11123, 355), (11124, 354), 
-(11125, 371);
-
-insert into BuyIn values (1111, 1),(1112, 2),(1113, 3),(1114, 4),(1115, 5),
-(1116, 6),(1117, 7),(1118, 8),(1119, 9),(1120, 10),(1121, 11),(1122, 12),
-(1123, 13),(1124, 14),(1125, 15);
-
-insert into Buy values (1, 1234), (2, 3123), (3, 1111), (4, 2222), 
-(5, 3333), (6, 4567), 
-(7, 2345), (8, 1345), 
-(9, 7777), (10, 4444),
-(11, 7890), (12, 1789), 
-(13, 1567), (14, 6666), 
-(15, 5555);
-
-insert into Search values 
-('lucky001', 1111),
-('lucky002', 1112), 
-('lucky003', 1113), 
-('lucky004', 1114), 
-('lucky005', 1115), 
-('lucky006', 1116), 
-('lucky007', 1117), 
-('lucky008', 1118), 
-('lucky009', 1119), 
-('lucky010', 1120), 
-('lucky011', 1121), 
-('lucky012', 1122), 
-('lucky013', 1123), 
-('lucky014', 1124), 
-('lucky015', 1125);
+insert into haves values (11111, 15), (11112,14), (11113, 13), (11114, 12), 
+(11120, 11), (11115, 10), 
+(11116, 9), (11117, 8), 
+(11118, 7), (11121, 6),
+(11119, 5), (11122, 4), 
+(11123, 3), (11124, 2), 
+(11125, 1);
