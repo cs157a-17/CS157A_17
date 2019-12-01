@@ -121,10 +121,10 @@
         <div class="product-slider owl-carousel">
 
           - for(var i=0; i < items.length; i++) {
-          <!-- 1 -->
           <div class="product-item">
             <div class="pi-pic">
-              <img src="img/product/1.jpg" alt="" />
+              - var pic = "img/product/" + items[i].Image
+              img(src = pic)
               <div class="pi-links">
                 <a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
               </div>
@@ -135,12 +135,11 @@
             </div>
             <p>#{items[i].Description}</p>
           </div>
-          - }
+          - };
         </div>
       </div>
     </section>
-    <!-- letest product section end -->
-
+    <!-- latest product section end -->
 
     <!-- Footer section -->
     <section class="footer-section">
