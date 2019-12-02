@@ -26,7 +26,7 @@ CREATE TABLE `cs157a`.`users` (
   `LastName` VARCHAR(255) NOT NULL,
   `PhoneNumber` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`UserID`));
-  
+
 CREATE TABLE `cs157a`.`items` (
   `ItemID` INT NOT NULL,
   `Name` VARCHAR(255) NOT NULL,
@@ -60,36 +60,30 @@ CREATE TABLE `cs157a`.`suppliers` (
 CREATE TABLE `cs157a`.`supply` (
   `ItemID` INT NOT NULL REFERENCES items(ItemID),
   `SupplierID` INT NOT NULL REFERENCES suppliers(supplierID),
-  PRIMARY KEY (`ItemID`),
-  UNIQUE INDEX `SupplierID_UNIQUE` (`SupplierID` ASC) VISIBLE);
+  PRIMARY KEY (`ItemID`, `SupplierID`));
   
 CREATE TABLE `cs157a`.`haveu` (
   `UserID` VARCHAR(255) NOT NULL references users(UserID),
   `AddressID` INT NOT NULL references addresses(AddressID),
-  PRIMARY KEY (`UserID`),
-  UNIQUE INDEX `addressID_UNIQUE` (`addressID` ASC) VISIBLE);
+  PRIMARY KEY (`UserID`, `addressID`));
 
 CREATE TABLE `cs157a`.`havepu` (
   `CardNumber` INT NOT NULL references payingusers(CardNumber),
   `AddressID` INT NOT NULL references addresses(AddressID),
-  PRIMARY KEY (`CardNumber`),
-  UNIQUE INDEX `AddressID_UNIQUE` (`AddressID` ASC) VISIBLE);
+  PRIMARY KEY (`CardNumber`, `AddressID`));
 
 CREATE TABLE `cs157a`.`haveS` (
   `SupplierID` INT NOT NULL REFERENCES suppliers(supplierID),
   `AddressID` INT NOT NULL references addresses(AddressID),
-  PRIMARY KEY (`SupplierID`),
-  UNIQUE INDEX `AddressID_UNIQUE` (`AddressID` ASC) VISIBLE);
+  PRIMARY KEY (`SupplierID`, `AddressID`));
 
 CREATE TABLE `cs157a`.`carts` (
   `UserID` VARCHAR(255) NOT NULL references users(UserID),
   `ItemID` INT NOT NULL REFERENCES items(ItemID),
   `Quantity` INT NOT NULL,
-  `TotalPrice` INT NOT NULL,
-  PRIMARY KEY (`UserID`),
-  UNIQUE INDEX `ItemID_UNIQUE` (`ItemID` ASC) VISIBLE);
+  `TotalPrice` DOUBLE NOT NULL,
+  PRIMARY KEY (`UserID`, `ItemID`));
   
-
   /*insert data to table*/
 insert into users values 
 ('lucky001', 'qwert1234', 'Sophia', 'Smith', 1234567890),
@@ -106,7 +100,8 @@ insert into users values
 ('lucky012', 'hjklm5678', 'Zoey', 'Martin', 1234567881), 
 ('lucky013', 'hjklm5678', 'Leah', 'Baker', 1234567882), 
 ('lucky014', 'yuiop1234', 'Anna', 'Adams', 1234567883), 
-('lucky015', 'hjklm5678', 'Ashley', 'Cooper', 1234567884);
+('lucky015', 'hjklm5678', 'Ashley', 'Cooper', 1234567884),
+('tien', 'tien', 'Tien', 'Ly', 4086678102);
   
 insert into suppliers values 
 (11111, 'Tincidunt Limited'), (11112, 'Nullam Vitae Diam Institute'), 
@@ -178,7 +173,7 @@ Adjustable strap inside; Hat Circumference: 56-58cm/22-22.8"; Brim Width: 6cm/2.
 Breathable, lightweight and comfortable for all-day wear
 Classic design with belt will make you so fashion, elegant and charming
 Perfect for lounging at the beach, clubbing, or simply casual everyday wear; 
-Makes a great gift for that fashionable on-trend friend of yours', '10.png', 'CLOTHING', 100, 16.45),
+Makes a great gift for that fashionable on-trend friend of yours', '10.png', 'STATIONERY', 100, 16.45),
 (1121, 'Tommy Hilfiger Mens Ardin Dad Hat', '100% Cotton
 Imported
 Adjustable closure
@@ -188,12 +183,12 @@ Chain stitch embroidered logo flag
 Adjustable metal buckle closure
 Six-panel construction with ventilating grommets
 Comfort and style make this Tommy Hilfiger hat perfect for every day wear. 
-This tommy cap is an essential that''s hard to beat', '11.png', 'CLOTHING', 100, 19.99),
+This tommy cap is an essential that''s hard to beat', '11.png', 'WOMEN', 100, 19.99),
 (1122, 'Kangol Unisex Tropic 504 Ventair', '100% Polyester
 Made in the USA and Imported
 No Closure closure
 Hand Wash
-Mixed-knit flat cap featuring contrast logo embroidery at back', '12.png', 'CLOTHING', 100, 33.15),
+Mixed-knit flat cap featuring contrast logo embroidery at back', '12.png', 'MEN', 100, 33.15),
 (1123, 'Carhartt Womens Odessa Cap', '100% Cotton
 Imported
 Hook and Loop closure
@@ -208,7 +203,7 @@ Leatherette Carhartt label sewn on front', '13.png', 'CLOTHING', 100, 14.99),
 PERFECT FIT: One size fits most, combines plenty of stretch and a snug fit. This hat measures 8” long by 9” wide lying flat
 WHEN TO WEAR: Can be worn indoors or out. This beanie will keep your head and ears warm, even if it’s brutal outside.
 GREAT QUALITY: This beanie is very thick and 100% soft acrylic. It’s machine washable and should be hung to dry
-FUNKY JUNQUE: We carry many great items on Amazon like winter beanies, gloves, sun hats, baseball caps, scarves and more!', '14.png', 'CLOTHING', 100, 10.99),
+FUNKY JUNQUE: We carry many great items on Amazon like winter beanies, gloves, sun hats, baseball caps, scarves and more!', '14.png', 'WOMEN', 100, 10.99),
 (1125, 'Tommy Hilfiger Mens Dad Hat Avery', 
 '100% Cotton
 Imported
@@ -221,7 +216,7 @@ Logo flag embroidery
 Adjustable strap closure
 Six-panel construction with ventilating grommets
 Comfort and style make this Tommy Hilfiger cap perfect for every day wear. 
-This tommy hat is an essential that is hard to beat', '15.png', 'CLOTHING', 100, 19.99);
+This tommy hat is an essential that is hard to beat', '15.png', 'MEN', 100, 19.99);
 
 insert into addresses values 
 (1, '2150 Monterey Hwy', 'San Jose', 'CA', 95112),
@@ -241,21 +236,21 @@ insert into addresses values
 (15, '230 Umbarger Rd', 'San Jose', 'CA', 95111);
 
 insert into carts values 
-(1, 1111, 1, 10.99),
-(2, 1112, 1, 2.99),
-(3, 1113, 1, 1.99),
-(4, 1114, 1, 4.99),
-(5, 1115, 1, 6.99),
-(6, 1116, 10, 79.9),
-(7, 1117, 10, 109.9),
-(8, 1118, 10, 39.9),
-(9, 1119, 100, 599),
-(10, 1120, 10, 164.5),
-(11, 1121, 1, 19.99),
-(12, 1122, 1, 33.15),
-(13, 1123, 1, 14.99),
-(14, 1124, 1, 10.99),
-(15, 1125, 1, 19.99);
+('lucky001', 1111, 1, 10.99),
+('lucky002', 1112, 1, 2.99),
+('lucky003', 1113, 1, 1.99),
+('lucky004', 1114, 1, 4.99),
+('lucky005', 1115, 1, 6.99),
+('lucky006', 1116, 10, 79.9),
+('lucky007', 1117, 10, 109.9),
+('lucky008', 1118, 10, 39.9),
+('lucky009', 1119, 100, 599),
+('lucky010', 1120, 10, 164.5),
+('lucky011', 1121, 1, 19.99),
+('lucky012', 1122, 1, 33.15),
+('lucky013', 1123, 1, 14.99),
+('lucky014', 1124, 1, 10.99),
+('lucky015', 1125, 1, 19.99);
 
 insert into haveu values 
 ('lucky001', 1),
