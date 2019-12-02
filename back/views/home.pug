@@ -70,7 +70,7 @@
             </div>
             <div class="col-xl-6 col-lg-5">
               <form class="header-search-form">
-                <input type="text" placeholder="Search for an item ...." />
+                <input type="text" placeholder="Search for an item ...." name="search"/>
                 <button><i class="flaticon-search"></i></button>
               </form>
             </div>
@@ -82,8 +82,8 @@
                 </div>
                 <div class="up-item">
                   <div class="shopping-card">
-                    <i class="flaticon-bag"></i>
-                    <span>0</span>
+                    <i class="flaticon-bag"></i> 
+                    <span>#{itemincart[0].iic}</span>
                   </div>
                   <a href="/">Shopping Cart</a>
                 </div>
@@ -98,13 +98,13 @@
           <ul class="main-menu">
             <li><a href="/">Home</a></li>
             <span class="spacingnavbar"></span>
-            <li><a href="#">Women</a></li>
+            <li><a href="/women">Women</a></li>
             <span class="spacingnavbar"></span>
-            <li><a href="#">Men</a></li>
+            <li><a href="/men">Men</a></li>
             <span class="spacingnavbar"></span>
-            <li><a href="#">Books</a></li>
+            <li><a href="/books">Books</a></li>
             <span class="spacingnavbar"></span>
-            <li><a href="#">Stationery</a></li>
+            <li><a href="/stationery">Stationery</a></li>
           </ul>
         </div>
       </nav>
@@ -113,7 +113,7 @@
     <!-- Header section end -->
 
     <!-- latest product section -->
-    <section class="top-letest-product-section">
+    <section class="top-latest-product-section">
       <div class="container">
         <div class="section-title">
           <h2>LATEST PRODUCTS</h2>
@@ -123,10 +123,12 @@
           - for(var i=0; i < items.length; i++) {
           <div class="product-item">
             <div class="pi-pic">
-              - var pic = "img/product/" + items[i].Image
-              img(src = pic)
+              img(src = "img/product/" + items[i].Image)
               <div class="pi-links">
-                <a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+                - var temp = "/addtocart/" + items[i].ItemID
+                a.add-card(href=temp)
+                  i.flaticon-bag
+                  span ADD TO CART
               </div>
             </div>
             <div class="pi-text">

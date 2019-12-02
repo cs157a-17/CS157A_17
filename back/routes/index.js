@@ -2,16 +2,68 @@ var express = require('express');
 var router = express.Router();
 var db = require('../controllers/connector/mysql_conn');
 
-/* GET home page. */
+//Home Page
 router.get('/', checkauthorization, function (req, res, next) {
   var sql = "SELECT * FROM items";
+  var sql1 = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
 
-  db.query(sql, function(error, results, fields) {
-    res.render('home', {items: results});
+  db.query(sql1, function(error, result1, fields) {
+    db.query(sql, function(error, result2, fields) {
+      res.render('home', {items: result2, itemincart: result1});
+    });
   });
 });
 
 //Page
+router.get('/men', checkauthorization, function (req, res, next) {
+  var sql = "SELECT * FROM items WHERE Category = 'MEN'";
+
+  db.query(sql, function(error, results, fields) {
+    res.render('men', {items: results});
+  });
+});
+
+router.get('/women', checkauthorization, function (req, res, next) {
+  var sql = "SELECT * FROM items WHERE Category = 'WOMEN'";
+
+  db.query(sql, function(error, results, fields) {
+    res.render('women', {items: results});
+  });
+});
+
+router.get('/books', checkauthorization, function (req, res, next) {
+  var sql = "SELECT * FROM items WHERE Category = 'BOOK'";
+
+  db.query(sql, function(error, results, fields) {
+    res.render('books', {items: results});
+  });
+});
+
+router.get('/stationery', checkauthorization, function (req, res, next) {
+  var sql = "SELECT * FROM items WHERE Category = 'STATIONERY'";
+
+  db.query(sql, function(error, results, fields) {
+    res.render('stationery', {items: results});
+  }); 
+});
+
+//Profile
+
+//Cart
+
+//Add to cart button
+router.get('/addtocart/:id', function (req, res, next) {
+  var sql = "SELECT Price FROM items WHERE ItemID = '"+req.params.id+"'";
+  
+  db.query(sql, function (error, results, fields) {
+    var sql1 = "INSERT INTO carts VALUES ('"+req.session.userId+"', '"+req.params.id+"', 1, '"+results[0].Price+"')";
+    db.query(sql1, function (error, result, fields) {
+      res.redirect('/');
+    });
+  });
+});
+
+//Registration
 router.get('/registration', checkunauthorization, function (req, res, next) {
   res.render('registration');
 });
@@ -30,13 +82,14 @@ router.post('/signup', checkunauthorization, function (req, res, next) {
     if (results.length) {
       res.render('registration', {message: "User ID already exists!"});
     } else {
-      db.query('INSERT INTO users SET ?',users, function (error, results, fields) {
+      db.query('INSERT INTO users SET ?', users, function (error, results, fields) {
         res.render('landing', {message: "Succesfully! Your account has been created."});
       });
     }
   });
 });
 
+//Log In
 router.get('/landing', checkunauthorization, function (req, res, next) {
   res.render('landing');
 });
@@ -57,16 +110,14 @@ router.post('/login', checkunauthorization, function (req, res, next) {
   }); 
 });
 
-router.get('/profile', checkauthorization, function (req, res, next) {
-  res.render('profile', {user: req.session.user});  
-});
-
+//Log out
 router.get('/logout', function (req, res, next) {
   req.session.destroy(function(err) {
     res.redirect('landing');
   })
 });
 
+//Mics
 function checkauthorization(req, res, next){
   if (req.session.userId == null) {
     res.redirect('landing');
