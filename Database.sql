@@ -213,7 +213,36 @@ Logo flag embroidery
 Adjustable strap closure
 Six-panel construction with ventilating grommets
 Comfort and style make this Tommy Hilfiger cap perfect for every day wear. 
-This tommy hat is an essential that is hard to beat', '15.png', 'MEN', 100, 19.99);
+This tommy hat is an essential that is hard to beat', '15.png', 'MEN', 100, 19.99),
+(1126, 'MyLifeUNIT Fineliner Color Pen Set', 
+'0.4mm Colored Fine Liner Sketch Drawing Pen, Pack of 10 Assorted Colors', 
+'16.png', 'STATIONARY', 100, 5.99),
+(1127, '3C4G 36015 Best Day Ever Super Stationery Set', 
+'All you need for doodling, drawing and writing in a fun 90 piece set
+Includes a 15” lapboard, 100 page journal, and 10 sheets of colorful printed note paper
+Also includes 5 envelopes, 5 postcards, 60+ stickers and 4 colored markers
+Sturdy 15" x 14" lap desk style writing board', 
+'17.png', 'STATIONARY', 100, 16.62),
+(1128, 'AmazonBasics Daily Planner and Journal - 5" x 8.25", Hard Cover', 
+'Stay on task and organized with daily, weekly and monthly calendars
+Includes task, goal and review sections for extra productivity
+Features sturdy paper that can be written on with pencil, ink or permanent marker without bleeding
+Improves peace of mind and personal organization
+Features a black hard cover with an elastic band closure and ribbon bookmark', 
+'18.png', 'STATIONARY', 100, 16.62),
+(1129, 'Blank Note Cards with Envelopes', 
+'Flat Note Cards, 4x6 Blank Back Note Cards, 
+All Occasion Greeting Cards Assortment, Cute Stationary Set, 
+No Fold Flat Cactus Greeting Cards and Envelopes - 36 Pack',  
+'19.png', 'STATIONARY', 100, 12.99),
+(1130, 'Soucolor Super Large Capacity Canvas Pencil Case Pen Bag Pouch 
+Stationary Case Makeup Cosmetic Bag (Purple)', 
+'DIMENSIONS: 19.8x8.6x4.5cm(L*W*T). Lots of room, fits up pens, pencils, markers as well as small items and gadgets. It can holds 60 fineliner / 20 marker / 48 glitter gel pen.
+MULTI-LAYER DESIGN: You can separately neatly and orderly organize your pens, pencils, markers and small items in different compartments. Very convenience!
+MATERIAL: 100% brand new canvas, made sturdy with a strong zipper, durable for quality guaranteed.
+PERFECT GIFT: Ideal gift for Birthday, Back to School and Christmas. This is a pencil case for girls, boys. Also can be used cosmetic bag, cell phone bag and coins bag.
+PACKAGE: 1 Pencil Bag',  
+'20.png', 'STATIONARY', 100, 6.99);
 
 insert into addresses values 
 (1, '2150 Monterey Hwy', 'San Jose', 'CA', 95112),
