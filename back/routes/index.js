@@ -9,7 +9,7 @@ router.get('/', checkauthorization, function (req, res, next) {
 
   db.query(sql1, function(error, result1, fields) {
     db.query(sql, function(error, result2, fields) {
-      res.render('home', {items: result2, itemincart: result1});
+      res.render('home', {items: result2, itemincart: result1[0].iic});
     });
   });
 });
@@ -17,37 +17,57 @@ router.get('/', checkauthorization, function (req, res, next) {
 //Page
 router.get('/men', checkauthorization, function (req, res, next) {
   var sql = "SELECT * FROM items WHERE Category = 'MEN'";
+  var sql1 = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
 
-  db.query(sql, function(error, results, fields) {
-    res.render('men', {items: results});
+  db.query(sql1, function(error, result1, fields) {
+    db.query(sql, function(error, result2, fields) {
+      res.render('page', {titlename: 'Men', name: 'MEN\'S APPAREL', items: result2, itemincart: result1[0].iic});
+    });
   });
 });
 
 router.get('/women', checkauthorization, function (req, res, next) {
   var sql = "SELECT * FROM items WHERE Category = 'WOMEN'";
+  var sql1 = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
 
-  db.query(sql, function(error, results, fields) {
-    res.render('women', {items: results});
+  db.query(sql1, function(error, result1, fields) {
+    db.query(sql, function(error, result2, fields) {
+      res.render('page', {titlename: 'Women', name: 'WOMEN\'S APPAREL', items: result2, itemincart: result1[0].iic});
+    });
   });
 });
 
 router.get('/books', checkauthorization, function (req, res, next) {
   var sql = "SELECT * FROM items WHERE Category = 'BOOK'";
+  var sql1 = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
 
-  db.query(sql, function(error, results, fields) {
-    res.render('books', {items: results});
+  db.query(sql1, function(error, result1, fields) {
+    db.query(sql, function(error, result2, fields) {
+      res.render('page', {titlename: 'Books', name: 'BOOKS', items: result2, itemincart: result1[0].iic});
+    });
   });
 });
 
 router.get('/stationery', checkauthorization, function (req, res, next) {
   var sql = "SELECT * FROM items WHERE Category = 'STATIONERY'";
+  var sql1 = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
 
-  db.query(sql, function(error, results, fields) {
-    res.render('stationery', {items: results});
-  }); 
+  db.query(sql1, function(error, result1, fields) {
+    db.query(sql, function(error, result2, fields) {
+      res.render('page', {titlename: 'Stationery', name: 'STATIONERY', items: result2, itemincart: result1[0].iic});
+    });
+  });
 });
 
 //Profile
+router.get('/profile', checkauthorization, function (req, res, next) {
+  var sql = "SELECT * FROM items WHERE Category = 'STATIONERY'";
+
+  db.query(sql, function(error, results, fields) {
+    res.render('profile', {user: results});
+  }); 
+  res.render('profile', {user: req.session.user});
+});
 
 //Cart
 
@@ -111,7 +131,7 @@ router.post('/login', checkunauthorization, function (req, res, next) {
 });
 
 //Log out
-router.get('/logout', function (req, res, next) {
+router.get('/logout', checkauthorization, function (req, res, next) {
   req.session.destroy(function(err) {
     res.redirect('landing');
   })

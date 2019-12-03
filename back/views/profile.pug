@@ -1,16 +1,47 @@
 extends index
 
+block head
+  title Spartan Market | Profile
+
 block content
-  br
-  
-  <div class="container">
-    <h3>Profile Page<h3>
-    li= user.FirstName
-    li= user.LastName
-    li= user.PhoneNumber
 
-  <li><a href="/logout">Logout</a></li>
+  <!-- Page info -->
+    <div class="page-top-info">
+      <div class="container">
+        <h4>Profile</h4>
+        <div class="site-pagination"></div>
+      </div>
+    </div>
 
-  </div>
+    <section class="cart-section spad">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="cart-table">
+              <div class="pc-title">
+                <h4>#{user.UserID}</h4>
+                <p>Username</p>
+              </div>
+              <div class="pc-title">
+                <h4>#{user.FirstName}</h4>
+                <p>First Name</p>
+              </div>
+              <div class="pc-title">
+                <h4>#{user.LastName}</h4>
+                <p>Last Name</p>
+              </div>
+              <div class="pc-title">
+                <h4>#{user.PhoneNumber}</h4>
+                <p>Phone Number</p>
+              </div>
+              <div class="total-cost">
+                <h6><span>LOGOUT</span></h6>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+    </section>
+  <!-- Page info end -->
   
 

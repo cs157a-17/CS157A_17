@@ -170,7 +170,7 @@ Adjustable strap inside; Hat Circumference: 56-58cm/22-22.8"; Brim Width: 6cm/2.
 Breathable, lightweight and comfortable for all-day wear
 Classic design with belt will make you so fashion, elegant and charming
 Perfect for lounging at the beach, clubbing, or simply casual everyday wear; 
-Makes a great gift for that fashionable on-trend friend of yours', '10.png', 'STATIONERY', 100, 16.45),
+Makes a great gift for that fashionable on-trend friend of yours', '10.png', 'WOMEN', 100, 16.45),
 (1121, 'Tommy Hilfiger Mens Ardin Dad Hat', '100% Cotton
 Imported
 Adjustable closure
@@ -180,12 +180,12 @@ Chain stitch embroidered logo flag
 Adjustable metal buckle closure
 Six-panel construction with ventilating grommets
 Comfort and style make this Tommy Hilfiger hat perfect for every day wear. 
-This tommy cap is an essential that''s hard to beat', '11.png', 'WOMEN', 100, 19.99),
+This tommy cap is an essential that''s hard to beat', '11.png', 'MEN', 100, 19.99),
 (1122, 'Kangol Unisex Tropic 504 Ventair', '100% Polyester
 Made in the USA and Imported
 No Closure closure
 Hand Wash
-Mixed-knit flat cap featuring contrast logo embroidery at back', '12.png', 'MEN', 100, 33.15),
+Mixed-knit flat cap featuring contrast logo embroidery at back', '12.png', 'WOMEN', 100, 33.15),
 (1123, 'Carhartt Womens Odessa Cap', '100% Cotton
 Imported
 Hook and Loop closure
@@ -194,7 +194,7 @@ Hand Wash
 Carhartt force sweatband fights odors and features fast dry technology for quick wicking
 Light-structured, medium-profile cap with pre-curved visor
 Adjustable fit with hook-and-loop closure
-Leatherette Carhartt label sewn on front', '13.png', 'CLOTHING', 100, 14.99),
+Leatherette Carhartt label sewn on front', '13.png', 'WOMEN', 100, 14.99),
 (1124, 'Funky Junque Solid Ribbed Beanie Slouchy Soft Stretch Cable Knit Warm Skull Cap', 
 'UNISEX: Great for both women and men. The classic knit beanie cap is extremely cool
 PERFECT FIT: One size fits most, combines plenty of stretch and a snug fit. This hat measures 8” long by 9” wide lying flat
@@ -216,32 +216,32 @@ Comfort and style make this Tommy Hilfiger cap perfect for every day wear.
 This tommy hat is an essential that is hard to beat', '15.png', 'MEN', 100, 19.99),
 (1126, 'MyLifeUNIT Fineliner Color Pen Set', 
 '0.4mm Colored Fine Liner Sketch Drawing Pen, Pack of 10 Assorted Colors', 
-'16.png', 'STATIONARY', 100, 5.99),
+'16.png', 'STATIONERY', 100, 5.99),
 (1127, '3C4G 36015 Best Day Ever Super Stationery Set', 
 'All you need for doodling, drawing and writing in a fun 90 piece set
 Includes a 15” lapboard, 100 page journal, and 10 sheets of colorful printed note paper
 Also includes 5 envelopes, 5 postcards, 60+ stickers and 4 colored markers
 Sturdy 15" x 14" lap desk style writing board', 
-'17.png', 'STATIONARY', 100, 16.62),
+'17.png', 'STATIONERY', 100, 16.62),
 (1128, 'AmazonBasics Daily Planner and Journal - 5" x 8.25", Hard Cover', 
 'Stay on task and organized with daily, weekly and monthly calendars
 Includes task, goal and review sections for extra productivity
 Features sturdy paper that can be written on with pencil, ink or permanent marker without bleeding
 Improves peace of mind and personal organization
 Features a black hard cover with an elastic band closure and ribbon bookmark', 
-'18.png', 'STATIONARY', 100, 16.62),
+'18.png', 'STATIONERY', 100, 16.62),
 (1129, 'Blank Note Cards with Envelopes', 
 'Flat Note Cards, 4x6 Blank Back Note Cards, 
 All Occasion Greeting Cards Assortment, Cute Stationary Set, 
 No Fold Flat Cactus Greeting Cards and Envelopes - 36 Pack',  
-'19.png', 'STATIONARY', 100, 12.99),
+'19.png', 'STATIONERY', 100, 12.99),
 (1130, 'Soucolor Super Large Capacity Canvas Pencil Case Pen Bag', 
 'DIMENSIONS: 19.8x8.6x4.5cm(L*W*T). Lots of room, fits up pens, pencils, markers as well as small items and gadgets. It can holds 60 fineliner / 20 marker / 48 glitter gel pen.
 MULTI-LAYER DESIGN: You can separately neatly and orderly organize your pens, pencils, markers and small items in different compartments. Very convenience!
 MATERIAL: 100% brand new canvas, made sturdy with a strong zipper, durable for quality guaranteed.
 PERFECT GIFT: Ideal gift for Birthday, Back to School and Christmas. This is a pencil case for girls, boys. Also can be used cosmetic bag, cell phone bag and coins bag.
 PACKAGE: 1 Pencil Bag',  
-'20.png', 'STATIONARY', 100, 6.99);
+'20.png', 'STATIONERY', 100, 6.99);
 
 insert into addresses values 
 (1, '2150 Monterey Hwy', 'San Jose', 'CA', 95112),
