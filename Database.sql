@@ -37,7 +37,7 @@ CREATE TABLE `cs157a`.`items` (
 CREATE TABLE `cs157a`.`payingusers` (
   `CardNumber` INT NOT NULL,
   `CardHolderName` VARCHAR(255) NOT NULL,
-  `Expiration` DATE NOT NULL,
+  `Expiration` VARCHAR(45) NOT NULL,
   `CardsAccepted` VARCHAR(45) NULL,
   PRIMARY KEY (`CardNumber`));
   
@@ -116,14 +116,14 @@ insert into supply values
 (1121, 11121), (1122, 11122), (1123, 11123), (1124, 11124), (1125, 11125);
 
 insert into payingusers values 
-(1234, 'Sophia Smith', '2020-10-12', 'VISA'), (3123, 'Jacob Johnson', '2020-10-12', 'VISA'), 
-(1111, 'Emma Williams', '2020-10-12', 'VISA'), (2222, 'Mia Jones', '2020-10-12', 'VISA'), 
-(3333, 'Addison Brown', '2020-10-12', 'VISA'), (4567, 'Lily Davis', '2020-10-12', 'VISA'), 
-(2345, 'Grace Miller', '2020-10-12', 'VISA'), (1345, 'Avery Wilson', '2020-10-12', 'VISA'), 
-(7777, 'Sofia Thomas', '2020-10-12', 'VISA'), (4444, 'Aubrey White', '2020-10-12', 'VISA'),
-(7890, 'Lillian Harris', '2020-10-12', 'VISA'), (1789, 'Zoey Martin', '2020-10-12', 'VISA'), 
-(1567, 'Leah Baker', '2020-10-12', 'VISA'), (6666, 'Anna Adams', '2020-10-12', 'VISA'), 
-(5555, 'Ashley Cooper', '2020-10-12', 'VISA');
+(1234, 'Sophia Smith', '2020-10', 'VISA'), (3123, 'Jacob Johnson', '2020-10', 'VISA'), 
+(1111, 'Emma Williams', '2020-10', 'VISA'), (2222, 'Mia Jones', '2020-10', 'VISA'), 
+(3333, 'Addison Brown', '2020-10', 'VISA'), (4567, 'Lily Davis', '2020-10', 'VISA'), 
+(2345, 'Grace Miller', '2020-10', 'VISA'), (1345, 'Avery Wilson', '2020-10', 'VISA'), 
+(7777, 'Sofia Thomas', '2020-10', 'VISA'), (4444, 'Aubrey White', '2020-10', 'VISA'),
+(7890, 'Lillian Harris', '2020-10', 'VISA'), (1789, 'Zoey Martin', '2020-10', 'VISA'), 
+(1567, 'Leah Baker', '2020-10', 'VISA'), (6666, 'Anna Adams', '2020-10', 'VISA'), 
+(5555, 'Ashley Cooper', '2020-10', 'VISA');
 
 insert into cs157a.items values 
 (1111, 'Cut and Run', 
