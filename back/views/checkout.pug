@@ -1,0 +1,80 @@
+extends index
+
+block head
+  title Spartan Market | Checkout
+
+block content
+
+    <!-- Page info -->
+    <div class="page-top-info">
+      <div class="container">
+        <h4>Checkout</h4>
+        <div class="site-pagination"></div>
+      </div>
+    </div>
+
+    <!-- checkout section  -->
+    <section class="login-section spad">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 order-2 order-lg-1">
+            <form class="login-form">
+              <div class="cf-title">Billing Address</div>
+              <div class="row">
+                <div class="col-md-12">
+                  <p>*Billing Information</p>
+                </div>
+              </div>
+              <div class="row user-inputs">
+                <div class="col-md-12">
+                  <input type="text" placeholder="Street" required />
+                  <input type="text" placeholder="City" required />
+                </div>
+                <div class="col-md-6">
+                  <input type="text" placeholder="State" required />
+                </div>
+                <div class="col-md-6">
+                  <input type="text" placeholder="Zip" required />
+                </div>
+              </div>
+              <div class="cf-title">Payment</div>
+              <div class="row user-inputs">
+                <div class="col-md-12">
+                  <input type="text" placeholder="Card Number" required />
+                  <input type="text" placeholder="Cardholder Name" required />
+                </div>
+                <div class="col-md-6">
+                  <input type="month" placeholder="Expiration" required />
+                </div>
+                <div class="col-md-6">
+                  <select>
+                    <option value="visa">VISA</option>
+                    <option value="mastercard">MasterCard</option>
+                    <option value="discover">DISCOVER</option>
+                    <option value="amex">AMEX</option>
+                  </select>
+                </div>
+              </div>
+              <div class="cf-title">Delivery Info</div>
+              <p>
+                |We charge <b>$3.90</b> for each order placed to make sure the
+                |items are delivered safely to the hard-working Spartans !
+              </p>
+
+              <a href='success' class="site-btn submit-order-btn">Place Order</a>
+            </form>
+          </div>
+          <div class="col-lg-4 order-1 order-lg-2">
+            <div class="checkout-cart">
+              <h3>Your Cart</h3>
+              <ul class="price-list">
+                <li>Cost<span>$96.00</span></li>
+                <li>Shipping<span>$3.90</span></li>
+                <li class="total">Total<span>$99.90</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- checkout section end -->

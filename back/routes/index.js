@@ -68,15 +68,6 @@ router.get('/profile', checkauthorization, function (req, res, next) {
   });
 });
 
-//Cart
-router.get('/cart', checkauthorization, function (req, res, next) {
-  var sql = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
-
-  db.query(sql, function(error, results, fields) {
-    res.render('cart', {user: req.session.UserID, itemincart: results[0].iic});
-  });
-});
-
 //Add to cart button
 router.get('/addtocart/:id', function (req, res, next) {
   var sql = "SELECT Price FROM items WHERE ItemID = '"+req.params.id+"'";
@@ -84,8 +75,38 @@ router.get('/addtocart/:id', function (req, res, next) {
   db.query(sql, function (error, results, fields) {
     var sql1 = "INSERT INTO carts VALUES ('"+req.session.userId+"', '"+req.params.id+"', 1, '"+results[0].Price+"')";
     db.query(sql1, function (error, result, fields) {
-      res.redirect('/');
+      res.redirect('back');
     });
+  });
+});
+
+//Cart
+router.get('/cart', checkauthorization, function (req, res, next) {
+  var sql = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
+  var sql1 = "SELECT Name, Price, Category, Quantity, TotalPrice FROM items, carts WHERE UserID = '"+req.session.userId+"' AND items.ItemID = carts.ItemID";
+
+  db.query(sql, function(error, result, fields) {
+    db.query(sql1, function(error, results, fields) {
+      res.render('cart', {user: req.session.UserID, itemincart: result[0].iic, items: results});
+    });
+  });
+});
+
+//checkout
+router.get('/checkout', checkauthorization, function (req, res, next) {
+  var sql = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
+
+  db.query(sql, function(error, results, fields) {
+    res.render('checkout', {user: req.session.UserID, itemincart: results[0].iic});
+  });
+});
+
+//success
+router.get('/success', checkauthorization, function (req, res, next) {
+  var sql = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
+
+  db.query(sql, function(error, results, fields) {
+    res.render('success', {user: req.session.UserID, itemincart: results[0].iic});
   });
 });
 
