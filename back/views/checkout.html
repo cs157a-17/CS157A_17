@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <title>Spartan Market | Checkout</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon -->
+    <!-- <link href="img/favicon.ico" rel="shortcut icon" /> -->
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Caveat&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../public/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../public/css/flaticon.css" />
+    <link rel="stylesheet" href="../public/css/slicknav.min.css" />
+    <link rel="stylesheet" href="../public/css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="../public/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="../public/css/animate.css" />
+    <link rel="stylesheet" href="../public/css/style.css" />
+
+    <style>
+      .spartanheader {
+        max-width: 220%;
+        height: auto;
+      }
+
+      .spacingnavbar {
+        padding-right: 10px;
+      }
+
+      .spacingprofile {
+        padding-right: 15px;
+      }
+
+      .spartanmarketfont {
+        font-family: 'Caveat', cursive;
+        font-size: 20px;
+      }
+
+      .description {
+        font-size: 8px;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+      <div class="loader"></div>
+    </div>
+
+    <!-- Header section -->
+    <!-- <div class="text-center"> -->
+    <header class="header-section">
+      <div class="header-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-2 text-center text-lg-left">
+              <div class="row">
+                <div class="col-lg-3">
+                  <img
+                    class="spartanheader"
+                    src="../public/img/logo.png"
+                    alt=""
+                  />
+                </div>
+                <div class="col-lg-9 text-right">
+                  <span class="spartanmarketfont">Spartan Market</span>
+                </div>
+              </div>
+              <!-- logo -->
+            </div>
+            <div class="col-xl-6 col-lg-5">
+              <form class="header-search-form">
+                <input type="text" placeholder="Search for an item ...." />
+                <button><i class="flaticon-search"></i></button>
+              </form>
+            </div>
+            <div class="col-xl-4 col-lg-5">
+              <div class="user-panel">
+                <div class="up-item">
+                  <i class="flaticon-profile"></i>
+                  <a href="#">Profile</a>
+                  <span class="spacingprofile"></span>
+                  <a href="#">Log Out</a>
+                </div>
+                <!-- <div class="up-item">
+                  <a href="#">Log Out</a>
+                </div> -->
+                <div class="up-item">
+                  <div class="shopping-card">
+                    <i class="flaticon-bag"></i>
+                    <span>0</span>
+                  </div>
+                  <a href="#">Shopping Cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="main-navbar">
+        <div class="container">
+          <!-- menu -->
+          <ul class="main-menu">
+            <li><a href="#">Home</a></li>
+            <span class="spacingnavbar"></span>
+            <li><a href="#">Women</a></li>
+            <span class="spacingnavbar"></span>
+            <li><a href="#">Men</a></li>
+            <span class="spacingnavbar"></span>
+            <li><a href="#">Books</a></li>
+            <span class="spacingnavbar"></span>
+            <li><a href="#">Stationery</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- </div> -->
+    <!-- Header section end -->
+    <!-- Page info -->
+    <div class="page-top-info">
+      <div class="container">
+        <h4>Checkout</h4>
+        <div class="site-pagination"></div>
+      </div>
+    </div>
+
+    <!-- checkout section  -->
+    <section class="login-section spad">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 order-2 order-lg-1">
+            <form class="login-form">
+              <div class="cf-title">Billing Address</div>
+              <div class="row">
+                <div class="col-md-12">
+                  <p>*Billing Information</p>
+                </div>
+              </div>
+              <div class="row user-inputs">
+                <div class="col-md-12">
+                  <input type="text" placeholder="Street" required />
+                  <input type="text" placeholder="City" required />
+                </div>
+                <div class="col-md-6">
+                  <input type="text" placeholder="State" required />
+                </div>
+                <div class="col-md-6">
+                  <input type="text" placeholder="Zip" required />
+                </div>
+              </div>
+              <div class="cf-title">Payment</div>
+              <div class="row user-inputs">
+                <div class="col-md-12">
+                  <input type="text" placeholder="Card Number" required />
+                  <input type="text" placeholder="Cardholder Name" required />
+                </div>
+                <div class="col-md-6">
+                  <input type="month" placeholder="Expiration" required />
+                </div>
+                <div class="col-md-6">
+                  <select>
+                    <option value="visa">VISA</option>
+                    <option value="mastercard">MasterCard</option>
+                    <option value="discover">DISCOVER</option>
+                    <option value="amex">AMEX</option>
+                  </select>
+                </div>
+              </div>
+              <div class="cf-title">Delivery Info</div>
+              <p>
+                We charge <b>$3.90</b> for each order placed to make sure the
+                items are delivered safely to the hard-working Spartans !
+              </p>
+
+              <button class="site-btn submit-order-btn">Place Order</button>
+            </form>
+          </div>
+          <div class="col-lg-4 order-1 order-lg-2">
+            <div class="checkout-cart">
+              <h3>Your Cart</h3>
+              <ul class="price-list">
+                <li>Cost<span>$96.00</span></li>
+                <li>Shipping<span>$3.90</span></li>
+                <li class="total">Total<span>$99.90</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- checkout section end -->
+
+    <!-- Footer section -->
+    <section class="footer-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-sm-12">
+            <div class="footer-widget about-widget">
+              <h2>About</h2>
+              <p>
+                We are passinate CS students at SJSU working with the great
+                Professor Wu to accomplish this project!
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-sm-12">
+            <div class="footer-widget contact-widget">
+              <h2>Contact Us</h2>
+              <div class="con-info">
+                <span>A.</span>
+                <p>Maan Singh</p>
+              </div>
+              <div class="con-info">
+                <span>B.</span>
+                <p>Tien Ly</p>
+              </div>
+              <div class="con-info">
+                <span>C.</span>
+                <p>Ge Ou</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="social-links-warp">
+        <div class="container">
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          <p class="text-white text-center mt-5">
+            Copyright &copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            All rights reserved | This template is made with
+            <i class="fa fa-heart-o" aria-hidden="true"></i> by
+            <a href="https://colorlib.com" target="_blank">Colorlib</a>
+          </p>
+          <p class="text-white text-center mt-5">ALL HAIL PROFESSOR WU!</p>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        </div>
+      </div>
+    </section>
+    <!-- Footer section end -->
+
+    <!--====== Javascripts & Jquery ======-->
+    <script src="../public/js/jquery-3.2.1.min.js"></script>
+    <script src="../public/js/bootstrap.min.js"></script>
+    <script src="../public/js/jquery.slicknav.min.js"></script>
+    <script src="../public/js/owl.carousel.min.js"></script>
+    <script src="../public/js/jquery.nicescroll.min.js"></script>
+    <script src="../public/js/jquery.zoom.min.js"></script>
+    <script src="../public/js/jquery-ui.min.js"></script>
+    <script src="../public/js/main.js"></script>
+  </body>
+</html>
