@@ -235,8 +235,7 @@ Features a black hard cover with an elastic band closure and ribbon bookmark',
 All Occasion Greeting Cards Assortment, Cute Stationary Set, 
 No Fold Flat Cactus Greeting Cards and Envelopes - 36 Pack',  
 '19.png', 'STATIONARY', 100, 12.99),
-(1130, 'Soucolor Super Large Capacity Canvas Pencil Case Pen Bag Pouch 
-Stationary Case Makeup Cosmetic Bag (Purple)', 
+(1130, 'Soucolor Super Large Capacity Canvas Pencil Case Pen Bag', 
 'DIMENSIONS: 19.8x8.6x4.5cm(L*W*T). Lots of room, fits up pens, pencils, markers as well as small items and gadgets. It can holds 60 fineliner / 20 marker / 48 glitter gel pen.
 MULTI-LAYER DESIGN: You can separately neatly and orderly organize your pens, pencils, markers and small items in different compartments. Very convenience!
 MATERIAL: 100% brand new canvas, made sturdy with a strong zipper, durable for quality guaranteed.
