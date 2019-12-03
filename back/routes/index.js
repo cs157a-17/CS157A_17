@@ -61,15 +61,21 @@ router.get('/stationery', checkauthorization, function (req, res, next) {
 
 //Profile
 router.get('/profile', checkauthorization, function (req, res, next) {
-  var sql = "SELECT * FROM items WHERE Category = 'STATIONERY'";
+  var sql = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
 
   db.query(sql, function(error, results, fields) {
-    res.render('profile', {user: results});
-  }); 
-  res.render('profile', {user: req.session.user});
+    res.render('profile', {user: req.session.user, itemincart: results[0].iic});
+  });
 });
 
 //Cart
+router.get('/cart', checkauthorization, function (req, res, next) {
+  var sql = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
+
+  db.query(sql, function(error, results, fields) {
+    res.render('cart', {user: req.session.UserID, itemincart: results[0].iic});
+  });
+});
 
 //Add to cart button
 router.get('/addtocart/:id', function (req, res, next) {

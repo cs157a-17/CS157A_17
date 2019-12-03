@@ -1862,7 +1862,12 @@ ol {
 }
 
 .cart-table .total-cost h6 span {
+  color: #fff;
   margin-left: 38px;
+}
+
+.cart-table .total-cost h6 span:hover {
+  color: black;
 }
 
 .card-right .site-btn {
