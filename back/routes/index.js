@@ -5,7 +5,7 @@ var db = require('../controllers/connector/mysql_conn');
 //Home Page
 router.get('/', checkauthorization, function (req, res, next) {
   var sql = "SELECT * FROM items";
-  var sql1 = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
+  var sql1 = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
 
   db.query(sql1, function(error, result1, fields) {
     db.query(sql, function(error, result2, fields) {
@@ -17,7 +17,7 @@ router.get('/', checkauthorization, function (req, res, next) {
 //Page
 router.get('/men', checkauthorization, function (req, res, next) {
   var sql = "SELECT * FROM items WHERE Category = 'MEN'";
-  var sql1 = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
+  var sql1 = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
 
   db.query(sql1, function(error, result1, fields) {
     db.query(sql, function(error, result2, fields) {
@@ -28,7 +28,7 @@ router.get('/men', checkauthorization, function (req, res, next) {
 
 router.get('/women', checkauthorization, function (req, res, next) {
   var sql = "SELECT * FROM items WHERE Category = 'WOMEN'";
-  var sql1 = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
+  var sql1 = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
 
   db.query(sql1, function(error, result1, fields) {
     db.query(sql, function(error, result2, fields) {
@@ -39,7 +39,7 @@ router.get('/women', checkauthorization, function (req, res, next) {
 
 router.get('/books', checkauthorization, function (req, res, next) {
   var sql = "SELECT * FROM items WHERE Category = 'BOOK'";
-  var sql1 = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
+  var sql1 = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
 
   db.query(sql1, function(error, result1, fields) {
     db.query(sql, function(error, result2, fields) {
@@ -50,7 +50,7 @@ router.get('/books', checkauthorization, function (req, res, next) {
 
 router.get('/stationery', checkauthorization, function (req, res, next) {
   var sql = "SELECT * FROM items WHERE Category = 'STATIONERY'";
-  var sql1 = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
+  var sql1 = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
 
   db.query(sql1, function(error, result1, fields) {
     db.query(sql, function(error, result2, fields) {
@@ -61,7 +61,7 @@ router.get('/stationery', checkauthorization, function (req, res, next) {
 
 //Profile
 router.get('/profile', checkauthorization, function (req, res, next) {
-  var sql = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
+  var sql = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
 
   db.query(sql, function(error, results, fields) {
     res.render('profile', {user: req.session.user, itemincart: results[0].iic});
@@ -72,18 +72,33 @@ router.get('/profile', checkauthorization, function (req, res, next) {
 router.get('/addtocart/:id', function (req, res, next) {
   var sql = "SELECT Price FROM items WHERE ItemID = '"+req.params.id+"'";
   
-  db.query(sql, function (error, results, fields) {
-    var sql1 = "INSERT INTO carts VALUES ('"+req.session.userId+"', '"+req.params.id+"', 1, '"+results[0].Price+"')";
-    db.query(sql1, function (error, result, fields) {
-      res.redirect('back');
+  db.query(sql, function (error, result1, fields) {
+    var sql1 = "SELECT * FROM carts WHERE UserID = '"+req.session.userId+"' AND ItemID = '"+req.params.id+"'";
+
+    db.query(sql1, function (error, result2, fields) {
+      if (result2.length > 0) {
+
+        var temp1 = result2[0].Quantity + 1, temp2 = result2[0].TotalPrice + result1[0].Price;
+        var sql3 = "UPDATE carts SET Quantity='"+temp1+"', TotalPrice='"+temp2+"' WHERE UserID='"+req.session.userId+"' AND ItemID='"+req.params.id+"'";
+
+        db.query(sql3, function (error, result3, fields) {
+          res.redirect('back');
+        });
+      } else {
+        var sql2 = "INSERT INTO carts VALUES ('"+req.session.userId+"', '"+req.params.id+"', 1, '"+result1[0].Price+"')";
+
+        db.query(sql2, function (error, result3, fields) {
+          res.redirect('back');
+        });
+      }
     });
   });
 });
 
 //Cart
 router.get('/cart', checkauthorization, function (req, res, next) {
-  var sql = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
-  var sql1 = "SELECT Name, Price, Category, Quantity, TotalPrice FROM items, carts WHERE UserID = '"+req.session.userId+"' AND items.ItemID = carts.ItemID";
+  var sql = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
+  var sql1 = "SELECT items.ItemID, Name, Price, Category, Quantity, TotalPrice FROM items, carts WHERE UserID = '"+req.session.userId+"' AND items.ItemID = carts.ItemID";
 
   db.query(sql, function(error, result, fields) {
     db.query(sql1, function(error, results, fields) {
@@ -92,9 +107,51 @@ router.get('/cart', checkauthorization, function (req, res, next) {
   });
 });
 
+//cart button decrease
+router.get('/dec/:id', checkauthorization, function (req, res, next) {
+  var sql = "SELECT Price FROM items WHERE ItemID = '"+req.params.id+"'";
+  var sql1 = "SELECT items.ItemID, Name, Price, Category, Quantity, TotalPrice FROM items, carts WHERE carts.ItemID = '"+req.params.id+"' AND UserID = '"+req.session.userId+"' AND items.ItemID = carts.ItemID";
+
+  db.query(sql, function(error, result, fields) {
+    db.query(sql1, function(error, result1, fields) {
+      if (result1[0].Quantity > 1) {
+        var temp1 = result1[0].Quantity - 1, temp2 = result1[0].TotalPrice - result[0].Price;
+        var sql2 = "UPDATE carts SET Quantity='"+temp1+"', TotalPrice='"+temp2+"' WHERE UserID='"+req.session.userId+"' AND ItemID='"+req.params.id+"'";
+
+        db.query(sql2, function(error, result2, fields) {
+          res.redirect('back');
+        });
+      } else {
+        var sql2 = "DELETE FROM carts WHERE UserID='"+req.session.userId+"' AND ItemID='"+req.params.id+"'";
+
+        db.query(sql2, function(error, result2, fields) {
+          res.redirect('back');
+        });
+      }
+    });
+  });
+});
+
+//cart button increase
+router.get('/inc/:id', checkauthorization, function (req, res, next) {
+  var sql = "SELECT Price FROM items WHERE ItemID = '"+req.params.id+"'";
+  var sql1 = "SELECT items.ItemID, Name, Price, Category, Quantity, TotalPrice FROM items, carts WHERE carts.ItemID = '"+req.params.id+"' AND UserID = '"+req.session.userId+"' AND items.ItemID = carts.ItemID";
+
+  db.query(sql, function(error, result, fields) {
+    db.query(sql1, function(error, result1, fields) {
+      var temp1 = result1[0].Quantity + 1, temp2 = result1[0].TotalPrice + result[0].Price;
+      var sql2 = "UPDATE carts SET Quantity='"+temp1+"', TotalPrice='"+temp2+"' WHERE UserID='"+req.session.userId+"' AND ItemID='"+req.params.id+"'";
+
+      db.query(sql2, function(error, result2, fields) {
+        res.redirect('back');
+      });
+    });
+  });
+});
+
 //checkout
 router.get('/checkout', checkauthorization, function (req, res, next) {
-  var sql = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
+  var sql = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
 
   db.query(sql, function(error, results, fields) {
     res.render('checkout', {user: req.session.UserID, itemincart: results[0].iic});
@@ -103,7 +160,7 @@ router.get('/checkout', checkauthorization, function (req, res, next) {
 
 //success
 router.get('/success', checkauthorization, function (req, res, next) {
-  var sql = "SELECT COUNT(*) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
+  var sql = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '"+req.session.userId+"'";
 
   db.query(sql, function(error, results, fields) {
     res.render('success', {user: req.session.UserID, itemincart: results[0].iic});

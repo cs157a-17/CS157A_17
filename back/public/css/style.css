@@ -1690,7 +1690,7 @@ ol {
   color: #404040;
 }
 
-.quantity .pro-qty input {
+.quantity .pro-qty span {
   width: 28px;
   float: left;
   border: none;

@@ -18,8 +18,7 @@ block content
           <div class="pi-pic">
             img(src = "img/product/" + items[i].Image)
             <div class="pi-links">
-              - var temp = "/addtocart/" + items[i].ItemID
-              a.add-card(href=temp)
+              a.add-card(href="/addtocart/" + items[i].ItemID)
                 i.flaticon-bag
                 span ADD TO CART
             </div>
