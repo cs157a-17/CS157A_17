@@ -158,6 +158,40 @@ router.get('/checkout', checkauthorization, function (req, res, next) {
   });
 });
 
+//post checkout
+router.post('/checkoutform', checkauthorization, function (req, res, next) {
+  var sql = "SELECT * FROM addresses WHERE Street = '" + req.body.street + "'";
+  var sql2 = "SELECT * FROM payingusers WHERE CardNumber = '" + req.body.cardnumber + "'";
+
+  db.query(sql, function (error, result, fields) {
+    if (result.length) {
+      db.query(sql2, function (error, result2, fields) {
+        if (result2.length) {
+          res.redirect('success');
+        } else {
+          var temp2 = req.body.expirationY + "-" + req.body.expirationM;
+          db.query("INSERT INTO payingusers VALUES ('" + req.body.cardnumber + "', '" + req.body.cardholder + "', '" + temp2 + "', '" + req.body.card + "')", function (error, results, fields) {
+            res.redirect('success');
+          });
+        }
+      });
+    } else {
+      var sql3 = "SELECT AddressID as aid FROM addresses ORDER BY AddressID DESC LIMIT 1";
+      db.query(sql3, function (error, result3, fields) {
+        var temp = result3[0].aid + 1;
+        var temp2 = req.body.expirationY + "-" + req.body.expirationM;
+        var sqlad = "INSERT INTO addresses VALUES ('" + temp + "','" + req.body.street + "','" + req.body.city + "','" + req.body.state + "','" + req.body.zip + "')";
+        var sqlpu = "INSERT INTO payingusers VALUES ('" + req.body.cardnumber + "','" + req.body.cardholder + "','" + temp2 + "','" + req.body.card+ "')";
+        db.query(sqlad, function (error, results, fields) {
+          db.query(sqlpu, function (error, results, fields) {
+            res.redirect('success');
+          });
+        });
+      });
+    }
+  });
+});
+
 //success
 router.get('/success', checkauthorization, function (req, res, next) {
   var sql = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" + req.session.userId + "'";
@@ -188,37 +222,6 @@ router.post('/signup', checkunauthorization, function (req, res, next) {
     } else {
       db.query('INSERT INTO users SET ?', users, function (error, results, fields) {
         res.render('landing', { message: "Succesfully! Your account has been created." });
-      });
-    }
-  });
-});
-
-router.post('/checkoutform', checkauthorization, function (req, res, next) {
-  var sql = "SELECT * FROM addresses WHERE Street = '" + req.body.street + "'";
-  var sql2 = "SELECT * FROM payingusers WHERE CardNumber = '" + req.body.cardnumber + "'";
-
-  db.query(sql, function (error, result, fields) {
-    if (result.length) {
-      db.query(sql2, function (error, result2, fields) {
-        if (result2.length) {
-          res.redirect('success');
-        } else {
-          db.query("INSERT INTO payingusers VALUES ('" + req.body.cardnumber + "', '" + req.body.cardholder + "', '" + req.body.expiration + "', '" + req.body.card + "')", function (error, results, fields) {
-            res.redirect('success');
-          });
-        }
-      });
-    } else {
-      var sql3 = "SELECT AddressID as aid FROM addresses ORDER BY AddressID DESC LIMIT 1";
-      db.query(sql3, function (error, result3, fields) {
-        var temp = result3[0].aid + 1;
-        var sqlad = "INSERT INTO addresses VALUES ('" + temp + "','" + req.body.street + "','" + req.body.city + "','" + req.body.state + "','" + req.body.zip + "')";
-        var sqlpu = "INSERT INTO payingusers VALUES ('" + req.body.cardnumber + "','" + req.body.cardholder + "','" + req.body.expiration + "','" + req.body.card+ "')";
-        db.query(sqlad, function (error, results, fields) {
-          db.query(sqlpu, function (error, results, fields) {
-            res.redirect('success');
-          });
-        });
       });
     }
   });

@@ -30,7 +30,6 @@ CREATE TABLE `cs157a`.`items` (
   `Description` VARCHAR(2550) NULL,
   `Image` VARCHAR(255) NULL,
   `Category` VARCHAR(255) NULL,
-  `Stock` INT NOT NULL,
   `Price` DOUBLE NOT NULL,
   PRIMARY KEY (`ItemID`)); 
 
@@ -113,7 +112,8 @@ insert into suppliers values
 insert into supply values 
 (1111, 11111), (1112, 11112), (1113, 11113), (1114, 11114), (1115, 11115), 
 (1116, 11116), (1117, 11117), (1118, 11118), (1119, 11119), (1120, 11120), 
-(1121, 11121), (1122, 11122), (1123, 11123), (1124, 11124), (1125, 11125);
+(1121, 11121), (1122, 11122), (1123, 11123), (1124, 11124), (1125, 11125),
+(1126, 11121), (1127, 11122), (1128, 11123), (1129, 11124), (1130, 11125);
 
 insert into payingusers values 
 (1234, 'Sophia Smith', '2020-10', 'VISA'), (3123, 'Jacob Johnson', '2020-10', 'VISA'), 
@@ -129,33 +129,33 @@ insert into cs157a.items values
 (1111, 'Cut and Run', 
 'Twin sisters separated by the past are reunited by unspeakable 
 crimes in New York Times bestselling author Mary Burton’s throat-clutching
- novel of suspense…', '1.png', 'BOOK', 100, 10.99),
+ novel of suspense…', '1.png', 'BOOK', 10.99),
 (1112, 'My big Fat Fake Wedding',
 'Now a Washington Post and Amazon Charts Bestseller.
 #1 in the Spartan Store.
 He needs a wife.
-I need a husband.', '2.png', 'BOOK', 199, 2.99),
+I need a husband.', '2.png', 'BOOK', 2.99),
 (1113, 'Winter Cottage', 'An Amazon Charts bestseller.
 A gripping novel about family secrets…and coming home for the first time.',
- '3.png', 'BOOK', 100, 1.99),
+ '3.png', 'BOOK', 1.99),
 (1114, 'Room to Breathe', 
 'A funny, emotional novel full of southern charm about a mother and 
 daughter ready to start over. Liz Talley delivers. Her dialogue is crisp 
 and smart, her characters are vivid and real, her stories are unputdownable. 
-—Robyn Carr, New York Times bestselling author', '4.png', 'BOOK', 100, 4.99),
+—Robyn Carr, New York Times bestselling author', '4.png', 'BOOK', 4.99),
 (1115, 'The Vine Witch', 
 'A young witch emerges from a curse to find her world upended in this 
 gripping fantasy of betrayal, vengeance, and self-discovery set in 
-turn-of-the-century France.', '5.png', 'BOOK', 100, 6.99),
+turn-of-the-century France.', '5.png', 'BOOK', 6.99),
 (1116, 'Under Lying', 
 'In this gripping novel of suspense, the disappearance of a couple''s 
-baby daughter leaves everyone a suspect.', '6.png', 'BOOK', 100, 7.99),
+baby daughter leaves everyone a suspect.', '6.png', 'BOOK', 7.99),
 (1117, 'Pour Judgment', 
-'A week of tits, booze, and fun in the sun? Where do I sign up?', '7.png', 'BOOK', 100, 10.99),
+'A week of tits, booze, and fun in the sun? Where do I sign up?', '7.png', 'BOOK', 10.99),
 (1118, 'Hello, Darkness', 
 'From the #1 New York Times bestselling author of Seeing Red comes Hello, 
 Darkness, a brilliant, fast-paced tale about a woman haunted by her past 
-and caught in a nightmare that threatens to destroy her future.', '8.png', 'BOOK', 100, 3.99),
+and caught in a nightmare that threatens to destroy her future.', '8.png', 'BOOK', 3.99),
 (1119, 'The Dutch House: A Novel', 'Audiobook performed by Tom Hanks.
 From the New York Times best-selling author of Commonwealth and State of 
 Wonder comes Ann Patchett''s most powerful novel to date: a richly moving 
@@ -163,14 +163,14 @@ story that explores the indelible bond between two siblings,
 the house of their childhood, and a past that will not let them go. 
 The Dutch House is the story of a paradise lost, a tour de force that 
 digs deeply into questions of inheritance, love, and forgiveness, 
-of how we want to see ourselves, and of who we really are.', '9.png', 'BOOK', 100, 5.99),
+of how we want to see ourselves, and of who we really are.', '9.png', 'BOOK', 5.99),
 (1120, 'Lisianthus Women Belt Buckle Fedora Hat', 'Imported
 Material: 65% cotton, 35% polyester
 Adjustable strap inside; Hat Circumference: 56-58cm/22-22.8"; Brim Width: 6cm/2.36"
 Breathable, lightweight and comfortable for all-day wear
 Classic design with belt will make you so fashion, elegant and charming
 Perfect for lounging at the beach, clubbing, or simply casual everyday wear; 
-Makes a great gift for that fashionable on-trend friend of yours', '10.png', 'WOMEN', 100, 16.45),
+Makes a great gift for that fashionable on-trend friend of yours', '10.png', 'WOMEN', 16.45),
 (1121, 'Tommy Hilfiger Mens Ardin Dad Hat', '100% Cotton
 Imported
 Adjustable closure
@@ -180,12 +180,12 @@ Chain stitch embroidered logo flag
 Adjustable metal buckle closure
 Six-panel construction with ventilating grommets
 Comfort and style make this Tommy Hilfiger hat perfect for every day wear. 
-This tommy cap is an essential that''s hard to beat', '11.png', 'MEN', 100, 19.99),
+This tommy cap is an essential that''s hard to beat', '11.png', 'MEN', 19.99),
 (1122, 'Kangol Unisex Tropic 504 Ventair', '100% Polyester
 Made in the USA and Imported
 No Closure closure
 Hand Wash
-Mixed-knit flat cap featuring contrast logo embroidery at back', '12.png', 'WOMEN', 100, 33.15),
+Mixed-knit flat cap featuring contrast logo embroidery at back', '12.png', 'WOMEN', 33.15),
 (1123, 'Carhartt Womens Odessa Cap', '100% Cotton
 Imported
 Hook and Loop closure
@@ -194,13 +194,13 @@ Hand Wash
 Carhartt force sweatband fights odors and features fast dry technology for quick wicking
 Light-structured, medium-profile cap with pre-curved visor
 Adjustable fit with hook-and-loop closure
-Leatherette Carhartt label sewn on front', '13.png', 'WOMEN', 100, 14.99),
+Leatherette Carhartt label sewn on front', '13.png', 'WOMEN', 14.99),
 (1124, 'Funky Junque Solid Ribbed Beanie Slouchy Soft Stretch Cable Knit Warm Skull Cap', 
 'UNISEX: Great for both women and men. The classic knit beanie cap is extremely cool
 PERFECT FIT: One size fits most, combines plenty of stretch and a snug fit. This hat measures 8” long by 9” wide lying flat
 WHEN TO WEAR: Can be worn indoors or out. This beanie will keep your head and ears warm, even if it’s brutal outside.
 GREAT QUALITY: This beanie is very thick and 100% soft acrylic. It’s machine washable and should be hung to dry
-FUNKY JUNQUE: We carry many great items on Amazon like winter beanies, gloves, sun hats, baseball caps, scarves and more!', '14.png', 'WOMEN', 100, 10.99),
+FUNKY JUNQUE: We carry many great items on Amazon like winter beanies, gloves, sun hats, baseball caps, scarves and more!', '14.png', 'WOMEN', 10.99),
 (1125, 'Tommy Hilfiger Mens Dad Hat Avery', 
 '100% Cotton
 Imported
@@ -213,35 +213,35 @@ Logo flag embroidery
 Adjustable strap closure
 Six-panel construction with ventilating grommets
 Comfort and style make this Tommy Hilfiger cap perfect for every day wear. 
-This tommy hat is an essential that is hard to beat', '15.png', 'MEN', 100, 19.99),
+This tommy hat is an essential that is hard to beat', '15.png', 'MEN', 19.99),
 (1126, 'MyLifeUNIT Fineliner Color Pen Set', 
 '0.4mm Colored Fine Liner Sketch Drawing Pen, Pack of 10 Assorted Colors', 
-'16.png', 'STATIONERY', 100, 5.99),
+'16.png', 'STATIONERY', 5.99),
 (1127, '3C4G 36015 Best Day Ever Super Stationery Set', 
 'All you need for doodling, drawing and writing in a fun 90 piece set
 Includes a 15” lapboard, 100 page journal, and 10 sheets of colorful printed note paper
 Also includes 5 envelopes, 5 postcards, 60+ stickers and 4 colored markers
 Sturdy 15" x 14" lap desk style writing board', 
-'17.png', 'STATIONERY', 100, 16.62),
+'17.png', 'STATIONERY', 16.62),
 (1128, 'AmazonBasics Daily Planner and Journal - 5" x 8.25", Hard Cover', 
 'Stay on task and organized with daily, weekly and monthly calendars
 Includes task, goal and review sections for extra productivity
 Features sturdy paper that can be written on with pencil, ink or permanent marker without bleeding
 Improves peace of mind and personal organization
 Features a black hard cover with an elastic band closure and ribbon bookmark', 
-'18.png', 'STATIONERY', 100, 16.62),
+'18.png', 'STATIONERY', 16.62),
 (1129, 'Blank Note Cards with Envelopes', 
 'Flat Note Cards, 4x6 Blank Back Note Cards, 
 All Occasion Greeting Cards Assortment, Cute Stationary Set, 
 No Fold Flat Cactus Greeting Cards and Envelopes - 36 Pack',  
-'19.png', 'STATIONERY', 100, 12.99),
+'19.png', 'STATIONERY', 12.99),
 (1130, 'Soucolor Super Large Capacity Canvas Pencil Case Pen Bag', 
 'DIMENSIONS: 19.8x8.6x4.5cm(L*W*T). Lots of room, fits up pens, pencils, markers as well as small items and gadgets. It can holds 60 fineliner / 20 marker / 48 glitter gel pen.
 MULTI-LAYER DESIGN: You can separately neatly and orderly organize your pens, pencils, markers and small items in different compartments. Very convenience!
 MATERIAL: 100% brand new canvas, made sturdy with a strong zipper, durable for quality guaranteed.
 PERFECT GIFT: Ideal gift for Birthday, Back to School and Christmas. This is a pencil case for girls, boys. Also can be used cosmetic bag, cell phone bag and coins bag.
 PACKAGE: 1 Pencil Bag',  
-'20.png', 'STATIONERY', 100, 6.99);
+'20.png', 'STATIONERY', 6.99);
 
 insert into addresses values 
 (1, '2150 Monterey Hwy', 'San Jose', 'CA', 95112),

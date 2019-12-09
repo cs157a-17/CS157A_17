@@ -34,24 +34,25 @@ block content
                   <input type="text" placeholder="State" name="state" required />
                 </div>
                 <div class="col-md-6">
-                  <input type="text" pattern="[0-9]{5}" placeholder="Zip" name="zip" required />
+                  <input type="text" placeholder="Zip" name="zip" pattern="[0-9]{5}" required />
                 </div>
               </div>
               <div class="cf-title">Payment</div>
               <div class="row user-inputs">
                 <div class="col-md-12">
-                  <input type="text" placeholder="Card Number" name="cardnumber" required />
+                  <input type="text" placeholder="Card Number" name="cardnumber" pattern="[0-9]{16}" required />
                   <input type="text" placeholder="Cardholder Name" name="cardholder" required />
                 </div>
                 <div class="col-md-6">
-                  <input type="month" placeholder="Expiration" name="expiration" required />
+                  <input type="text" placeholder="Year" name="expirationY" required pattern="[0-9]{4}" />
+                  <input type="text" placeholder="Month" name="expirationM" required pattern="(?:0[1-9]|1[0-2])" />
                 </div>
                 <div class="col-md-6">
                   <select name="card" required>
-                    <option value="visa">VISA</option>
-                    <option value="mastercard">MasterCard</option>
-                    <option value="discover">DISCOVER</option>
-                    <option value="amex">AMEX</option>
+                    <option value="VISA">VISA</option>
+                    <option value="MasterCard">MasterCard</option>
+                    <option value="DISCOVER">DISCOVER</option>
+                    <option value="AMEX">AMEX</option>
                   </select>
                 </div>
               </div>

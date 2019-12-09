@@ -90,10 +90,10 @@
                 <div class="up-item">
                   <div class="shopping-card">
                     <i class="flaticon-bag"></i> 
-                    - if (itemincart = 0) {
-                    <span>0</span>
-                    - } else {
+                    - if (itemincart > 0) {
                     <span>#{itemincart}</span>
+                    - } else {
+                    <span>0</span>
                     - }
                   </div>
                   <a href="cart">Shopping Cart</a>
