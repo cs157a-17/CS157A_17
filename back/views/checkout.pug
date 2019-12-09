@@ -18,7 +18,7 @@ block content
       <div class="container">
         <div class="row">
           <div class="col-lg-8 order-2 order-lg-1">
-            <form class="login-form">
+            <form class="login-form" action="/success" method ="post">
               <div class="cf-title">Billing Address</div>
               <div class="row">
                 <div class="col-md-12">
@@ -27,27 +27,27 @@ block content
               </div>
               <div class="row user-inputs">
                 <div class="col-md-12">
-                  <input type="text" placeholder="Street" required />
-                  <input type="text" placeholder="City" required />
+                  <input type="text" placeholder="Street" name="street" required />
+                  <input type="text" placeholder="City" name="city"required />
                 </div>
                 <div class="col-md-6">
-                  <input type="text" placeholder="State" required />
+                  <input type="text" placeholder="State" name="state" required />
                 </div>
                 <div class="col-md-6">
-                  <input type="text" placeholder="Zip" required />
+                  <input type="text" placeholder="Zip" name="zip" required />
                 </div>
               </div>
               <div class="cf-title">Payment</div>
               <div class="row user-inputs">
                 <div class="col-md-12">
-                  <input type="text" placeholder="Card Number" required />
-                  <input type="text" placeholder="Cardholder Name" required />
+                  <input type="text" placeholder="Card Number" name="cardnumber" required />
+                  <input type="text" placeholder="Cardholder Name" name="cardholder" required />
                 </div>
                 <div class="col-md-6">
-                  <input type="month" placeholder="Expiration" required />
+                  <input type="month" placeholder="Expiration" name="expiration" required />
                 </div>
                 <div class="col-md-6">
-                  <select>
+                  <select name="card" required>
                     <option value="visa">VISA</option>
                     <option value="mastercard">MasterCard</option>
                     <option value="discover">DISCOVER</option>
@@ -61,7 +61,7 @@ block content
                 |items are delivered safely to the hard-working Spartans !
               </p>
 
-              <a href='success' class="site-btn submit-order-btn">Place Order</a>
+              <button class="site-btn submit-order-btn">Place Order</button>
             </form>
           </div>
           <div class="col-lg-4 order-1 order-lg-2">
