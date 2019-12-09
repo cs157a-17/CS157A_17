@@ -17,10 +17,9 @@ block content
         <div class="product-item">
           <div class="pi-pic">
             img(src = "img/product/" + items[i].Image)
-            <div class="pi-links">
-              a.add-card(href="/addtocart/" + items[i].ItemID)
-                i.flaticon-bag
-                span ADD TO CART
+            <div class="center-it">
+              a(href="/addtocart/" + items[i].ItemID)
+                <button class="cart-btn">ADD TO CART</button>
             </div>
           </div>
           <div class="pi-text">

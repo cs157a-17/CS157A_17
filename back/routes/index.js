@@ -193,7 +193,7 @@ router.post('/signup', checkunauthorization, function (req, res, next) {
   });
 });
 
-router.post('/success', function (req, res, next) {
+router.post('/checkout', function (req, res, next) {
   var addresses = {
     "Street": req.body.street,
     "City": req.body.city,

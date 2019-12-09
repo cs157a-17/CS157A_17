@@ -85,6 +85,10 @@ ol {
   Helper CSS
 -----------------------*/
 
+.center-it {
+  text-align: center;
+}
+
 .section-title {
   text-align: center;
 }
@@ -131,6 +135,25 @@ ol {
   min-width: 167px;
   padding: 18px 47px 14px;
   border-radius: 50px;
+  text-transform: uppercase;
+  background: #f51167;
+  color: #fff;
+  line-height: normal;
+  cursor: pointer;
+  text-align: center;
+}
+
+.cart-btn {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  display: inline-block;
+  border: none;
+  font-size: 10px;
+  font-weight: 500;
+  min-width: 67px;
+  /* padding: 18 px 47px 14px; */
+  padding: 8px 8px 5px 8px;
+  border-radius: 30px;
   text-transform: uppercase;
   background: #f51167;
   color: #fff;
