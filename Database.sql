@@ -35,7 +35,7 @@ CREATE TABLE `cs157a`.`items` (
   PRIMARY KEY (`ItemID`)); 
 
 CREATE TABLE `cs157a`.`payingusers` (
-  `CardNumber` INT NOT NULL,
+  `CardNumber` INT(16) NOT NULL,
   `CardHolderName` VARCHAR(255) NOT NULL,
   `Expiration` VARCHAR(45) NOT NULL,
   `CardsAccepted` VARCHAR(45) NULL,
@@ -45,7 +45,7 @@ CREATE TABLE `cs157a`.`addresses` (
   `AddressID` INT NOT NULL AUTO_INCREMENT,
   `Street` VARCHAR(255) NOT NULL,
   `City` VARCHAR(255) NOT NULL,
-  `State` VARCHAR(2) NOT NULL,
+  `State` VARCHAR(255) NOT NULL,
   `Zip` INT NOT NULL,
   PRIMARY KEY (`AddressID`));
   

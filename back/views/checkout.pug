@@ -18,7 +18,7 @@ block content
       <div class="container">
         <div class="row">
           <div class="col-lg-8 order-2 order-lg-1">
-            <form class="login-form" action="/checkout" method ="post">
+            <form class="login-form" action="/checkoutform" method ="post">
               <div class="cf-title">Billing Address</div>
               <div class="row">
                 <div class="col-md-12">
@@ -34,7 +34,7 @@ block content
                   <input type="text" placeholder="State" name="state" required />
                 </div>
                 <div class="col-md-6">
-                  <input type="text" placeholder="Zip" name="zip" required />
+                  <input type="text" pattern="[0-9]{5}" placeholder="Zip" name="zip" required />
                 </div>
               </div>
               <div class="cf-title">Payment</div>
