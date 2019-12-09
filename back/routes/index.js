@@ -210,13 +210,13 @@ router.post('/checkout', function (req, res, next) {
       });
     } else {
       var sql3 = "SELECT AddressID as aid FROM addresses ORDER BY AddressID DESC LIMIT 1";
-      db.query(sql3, addresses, function (error, results, fields) {
+      db.query(sql3, function (error, results, fields) {
         console.log(results)
         var temp = results[0].aid + 1;
         var sqlad = "INSERT INTO addresses VALUES ('" + temp + "','" + req.body.street + "','" + req.body.city + "','" + req.body.state + "','" + req.body.zip + "')";
         var sqlpu = "INSERT INTO payingusers VALUES ('" + req.body.cardnumber + "','" + req.body.cardholder + "','" + req.body.expiration + "','" + req.body.card + "')";
-        db.query(sqlad, addresses, function (error, results, fields) {
-          db.query(sqlpu, payingusers, function (error, results, fields) {
+        db.query(sqlad, function (error, results, fields) {
+          db.query(sqlpu, function (error, results, fields) {
             res.render('success');
           });
         });
