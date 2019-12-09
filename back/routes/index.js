@@ -194,20 +194,8 @@ router.post('/signup', checkunauthorization, function (req, res, next) {
 });
 
 router.post('/checkout', function (req, res, next) {
-  var addresses = {
-    "Street": req.body.street,
-    "City": req.body.city,
-    "State": req.body.state,
-    "Zip": req.body.zip
-  }
-  var payingusers = {
-    "CardNumber": req.body.cardnumber,
-    "CardHolderName": req.body.cardholder,
-    "Expiration": req.body.expiration,
-    "CardsAccepted": req.body.card,
-  }
-  var sql = "SELECT * FROM addresses WHERE Street = '" + addresses.Street + "'";
-  var sql2 = "SELECT * FROM payingusers WHERE CardNumber = '" + payingusers.CardNumber + "'";
+  var sql = "SELECT * FROM addresses WHERE Street = '" + req.body.street + "'";
+  var sql2 = "SELECT * FROM payingusers WHERE CardNumber = '" + req.body.cardnumber + "'";
 
   db.query(sql, function (error, results, fields) {
     if (results.length) {
@@ -215,7 +203,7 @@ router.post('/checkout', function (req, res, next) {
         if (results.length) {
           res.render('success');
         } else {
-          db.query("INSERT INTO payingusers VALUES ('" + payingusers.CardNumber + "', '" + payingusers.CardHolderName + "', '" + payingusers.Expiration + "', '" + payingusers.CardsAccepted + "')", payingusers, function (error, results, fields) {
+          db.query("INSERT INTO payingusers VALUES ('" + req.body.cardnumber + "', '" + req.body.cardholder + "', '" + req.body.expiration + "', '" + req.body.card + "')", payingusers, function (error, results, fields) {
             res.render('success');
           });
         }
