@@ -35,7 +35,7 @@ CREATE TABLE `cs157a`.`items` (
   PRIMARY KEY (`ItemID`)); 
 
 CREATE TABLE `cs157a`.`payingusers` (
-  `CardNumber` INT(16) NOT NULL,
+  `CardNumber` BIGINT(16) NOT NULL,
   `CardHolderName` VARCHAR(255) NOT NULL,
   `Expiration` VARCHAR(45) NOT NULL,
   `CardsAccepted` VARCHAR(45) NULL,
