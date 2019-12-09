@@ -85,6 +85,14 @@ ol {
   Helper CSS
 -----------------------*/
 
+.padding-on-top {
+  padding-top: 60px;
+}
+
+.right-it {
+  right: 0;
+}
+
 .center-it {
   text-align: center;
 }
@@ -160,6 +168,17 @@ ol {
   line-height: normal;
   cursor: pointer;
   text-align: center;
+}
+
+.cart-btn.sb-dark {
+  background: #413a3a;
+}
+
+.cart-btn.sb-dark.sb-line {
+  background-color: transparent;
+  color: #111111;
+  -webkit-box-shadow: inset 0 0 0 1px #111111;
+  box-shadow: inset 0 0 0 1px #111111;
 }
 
 .site-btn:hover {

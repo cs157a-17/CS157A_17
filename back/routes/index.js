@@ -225,8 +225,10 @@ router.post('/checkout', function (req, res, next) {
       db.query(sql3, addresses, function (error, results, fields) {
         console.log(results)
         var temp = results[0].aid + 1;
-        db.query("INSERT INTO addresses VALUES ('" + temp + "', '" + req.body.street + "', '" + req.body.city + "', '" + req.body.state + "', '" + req.body.zip + "')", addresses, function (error, results, fields) {
-          db.query("INSERT INTO payingusers VALUES ('" + req.body.cardnumber + "', '" + req.body.cardholder + "', '" + req.body.expiration + "', '" + req.body.card + "')", payingusers, function (error, results, fields) {
+        var sqlad = "INSERT INTO addresses VALUES ('" + temp + "','" + req.body.street + "','" + req.body.city + "','" + req.body.state + "','" + req.body.zip + "')";
+        var sqlpu = "INSERT INTO payingusers VALUES ('" + req.body.cardnumber + "','" + req.body.cardholder + "','" + req.body.expiration + "','" + req.body.card + "')";
+        db.query(sqlad, addresses, function (error, results, fields) {
+          db.query(sqlpu, payingusers, function (error, results, fields) {
             res.render('success');
           });
         });
