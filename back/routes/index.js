@@ -193,7 +193,7 @@ router.post('/signup', checkunauthorization, function (req, res, next) {
   });
 });
 
-router.post('/checkout', function (req, res, next) {
+router.post('/checkout', checkauthorization, function (req, res, next) {
   var sql = "SELECT * FROM addresses WHERE Street = '" + req.body.street + "'";
   var sql2 = "SELECT * FROM payingusers WHERE CardNumber = '" + req.body.cardnumber + "'";
 
