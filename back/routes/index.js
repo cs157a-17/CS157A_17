@@ -96,34 +96,30 @@ router.get('/stationery', checkauthorization, function(req, res, next) {
 
 //Profile
 router.get('/profile', checkauthorization, function(req, res, next) {
-  var sql =
-    "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" +
-    req.session.userId +
-    "'";
+  var sql = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" +req.session.userId +"'";
 
   db.query(sql, function(error, results, fields) {
-    res.render('profile', {
-      user: req.session.user,
-      itemincart: results[0].iic
-    });
+    res.render('profile', {user: req.session.user, itemincart: results[0].iic});
   });
 });
 
 router.post('/profile', checkauthorization, function(req, res, next) {
-  console.log(req.body);
-  // var sql2 = "UPDATE users SET UserID= '" + req.body.username + "',
-  var sql =
-    "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" +
-    req.session.userId +
-    "'";
+  if (req.body.password != req.body.password_confirm) {
+    res.redirect('/editprofile');
+  } else {
+    var sql2 = "UPDATE users SET Password = '" + req.body.password + "', PhoneNumber = '" + req.body.phonenumber + "' WHERE UserID = '" + req.session.userId + "'" ;
+    var sql = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" +req.session.userId +"'";
+    var sql3 = "SELECT * FROM users WHERE UserID = '"+req.session.userId+"'";
 
-  db.query(sql, function(error, results, fields) {
-    console.log({ user: req.session.user, itemincart: results[0].iic });
-    res.render('profile', {
-      user: req.session.user,
-      itemincart: results[0].iic
+    db.query(sql2, function(error, result, fields) {
+      db.query(sql, function(error, results, fields) {
+        db.query(sql3, function(error, result2, fields) {
+          req.session.user = result2[0];
+          res.redirect('profile');
+        });
+      });
     });
-  });
+  }
 });
 
 router.get('/editprofile', checkauthorization, function(req, res, next) {
@@ -393,6 +389,11 @@ router.get('/success', checkauthorization, checktotal, function (req, res, next)
 });
 
 //search
+router.get('/search', checkauthorization, function (req, res, next) {
+  res.redirect('/');
+});
+
+//post search
 router.post('/search', checkauthorization, function(req, res, next) {
   var sql = "SELECT * FROM items WHERE Name LIKE '%" + req.body.search + "%'";
   var sql1 =
@@ -452,12 +453,7 @@ router.get('/landing', checkunauthorization, function(req, res, next) {
 router.post('/login', checkunauthorization, function(req, res, next) {
   var userid = req.body.userid;
   var pass = req.body.password;
-  var sql =
-    "SELECT * FROM users WHERE UserID ='" +
-    userid +
-    "' and Password = '" +
-    pass +
-    "'";
+  var sql = "SELECT * FROM users WHERE UserID ='" + userid +"' and Password = '" +pass +"'";
 
   db.query(sql, function(err, results) {
     if (results.length) {

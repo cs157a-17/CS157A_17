@@ -3,7 +3,7 @@ extends index
 block head
   title Spartan Market | Edit Profile
   script.
-    var password = document.getElementById("password"), confirm_password = document.getElementById("confirm_password");
+    var password = document.getElementById("password"), confirm_password = document.getElementById("password_confirm");
     function validatePassword(){
       if (password.value != confirm_password).value) {
         confirm_password.setCustomValidity("Passwords Don't Match");
@@ -29,21 +29,20 @@ block content
         <div class="row">
           <div class="offset-lg-3 col-lg-6">
             <div class="cart-table">
-            <form id="editprofileform" class="edit-profile-form" >
-              <p>First Name</p>
-              <input type="text" value=#{user.FirstName} readonly />
-              <p>Last Name</p>
-              <input type="text" value=#{user.LastName} readonly />
-              <p>Previous Username - <strong>#{user.UserID}</strong></p>
-              <input type="text" name="username" placeholder="Enter New Username" />
-              <p>Previous Password - <strong>#{user.Password}</strong></p>
-              <input type="password" id="password" placeholder="Enter New Password" />
-              <input type="password" id="password_confirm" placeholder="Repeat New Password"/>
-
+            <form class="edit-profile-form" action="/profile" method="post">
+              <p>Username</p>
+              <input type="text" name="username" value=#{user.UserID} readonly/>
+              <p>Previous First Name - <strong>#{user.FirstName}</strong></p>
+              <input type="text" placeholder=#{user.FirstName} />
+              <p>Previous Last Name - <strong>#{user.LastName}</strong></p>
+              <input type="text" placeholder=#{user.LastName}  />
+              <p>Previous Password</p>
+              <input type="password" name="password" placeholder="Enter New Password" required/>
+              <input type="password" name="password_confirm" placeholder="Repeat New Password" required/>
               <p>Previous Phone Number - <strong>#{user.PhoneNumber}</strong></p>
-              <input type="text" name="phonenumber" placeholder="Enter New Phone Number" />
+              <input type="text" name="phonenumber" placeholder="Enter New Phone Number" pattern="[0-9]{10}" required/>
               //- <div class="total-cost">
-              <button type=submit>Submir</button> 
+              <button type=submit onclick="validatePassword()">Submit</button> 
                 //- <h6><a href="/profile"><span>DONE</span></a></h6>
               //- </div>
             </form> 
