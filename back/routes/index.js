@@ -96,10 +96,16 @@ router.get('/stationery', checkauthorization, function(req, res, next) {
 
 //Profile
 router.get('/profile', checkauthorization, function(req, res, next) {
-  var sql = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" +req.session.userId +"'";
+  var sql =
+    "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" +
+    req.session.userId +
+    "'";
 
   db.query(sql, function(error, results, fields) {
-    res.render('profile', {user: req.session.user, itemincart: results[0].iic});
+    res.render('profile', {
+      user: req.session.user,
+      itemincart: results[0].iic
+    });
   });
 });
 
@@ -107,9 +113,24 @@ router.post('/profile', checkauthorization, function(req, res, next) {
   if (req.body.password != req.body.password_confirm) {
     res.redirect('/editprofile');
   } else {
-    var sql2 = "UPDATE users SET Password = '" + req.body.password + "', PhoneNumber = '" + req.body.phonenumber + "' WHERE UserID = '" + req.session.userId + "'" ;
-    var sql = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" +req.session.userId +"'";
-    var sql3 = "SELECT * FROM users WHERE UserID = '"+req.session.userId+"'";
+    var sql2 =
+      "UPDATE users SET FirstName = '" +
+      req.body.firstname +
+      "', LastName = '" +
+      req.body.lastname +
+      "', Password = '" +
+      req.body.password +
+      "', PhoneNumber = '" +
+      req.body.phonenumber +
+      "' WHERE UserID = '" +
+      req.session.userId +
+      "'";
+    var sql =
+      "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" +
+      req.session.userId +
+      "'";
+    var sql3 =
+      "SELECT * FROM users WHERE UserID = '" + req.session.userId + "'";
 
     db.query(sql2, function(error, result, fields) {
       db.query(sql, function(error, results, fields) {
@@ -293,12 +314,23 @@ router.get('/inc/:id', checkauthorization, function(req, res, next) {
 });
 
 //checkout
-router.get('/checkout', checkauthorization, checktotal, function (req, res, next) {
-  var sql = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" + req.session.userId + "'";
+router.get('/checkout', checkauthorization, checktotal, function(
+  req,
+  res,
+  next
+) {
+  var sql =
+    "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" +
+    req.session.userId +
+    "'";
 
-  db.query(sql, function (error, results, fields) {
+  db.query(sql, function(error, results, fields) {
     req.session.total = req.session.total;
-    res.render('checkout', { user: req.session.UserID, itemincart: results[0].iic, total: req.session.total });
+    res.render('checkout', {
+      user: req.session.UserID,
+      itemincart: results[0].iic,
+      total: req.session.total
+    });
   });
 });
 
@@ -378,18 +410,29 @@ router.post('/checkoutform', checkauthorization, checktotal, function(
 });
 
 //success
-router.get('/success', checkauthorization, checktotal, function (req, res, next) {
-  var sql = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" + req.session.userId + "'";
+router.get('/success', checkauthorization, checktotal, function(
+  req,
+  res,
+  next
+) {
+  var sql =
+    "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" +
+    req.session.userId +
+    "'";
 
-  db.query(sql, function (error, results, fields) {
+  db.query(sql, function(error, results, fields) {
     temp = req.session.total + 3.9;
     req.session.total = 0;
-    res.render('success', {user: req.session.UserID, itemincart: results[0].iic, total: temp});
+    res.render('success', {
+      user: req.session.UserID,
+      itemincart: results[0].iic,
+      total: temp
+    });
   });
 });
 
 //search
-router.get('/search', checkauthorization, function (req, res, next) {
+router.get('/search', checkauthorization, function(req, res, next) {
   res.redirect('/');
 });
 
@@ -453,7 +496,12 @@ router.get('/landing', checkunauthorization, function(req, res, next) {
 router.post('/login', checkunauthorization, function(req, res, next) {
   var userid = req.body.userid;
   var pass = req.body.password;
-  var sql = "SELECT * FROM users WHERE UserID ='" + userid +"' and Password = '" +pass +"'";
+  var sql =
+    "SELECT * FROM users WHERE UserID ='" +
+    userid +
+    "' and Password = '" +
+    pass +
+    "'";
 
   db.query(sql, function(err, results) {
     if (results.length) {

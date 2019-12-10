@@ -33,18 +33,20 @@ block content
               <p>Username</p>
               <input type="text" name="username" value=#{user.UserID} readonly/>
               <p>Previous First Name - <strong>#{user.FirstName}</strong></p>
-              <input type="text" placeholder=#{user.FirstName} />
+              <input type="text" name="firstname" placeholder="Enter New First Name" required/>
               <p>Previous Last Name - <strong>#{user.LastName}</strong></p>
-              <input type="text" placeholder=#{user.LastName}  />
+              <input type="text" name="lastname" placeholder="Enter New Last Name" required/>
               <p>Previous Password</p>
               <input type="password" name="password" placeholder="Enter New Password" required/>
               <input type="password" name="password_confirm" placeholder="Repeat New Password" required/>
               <p>Previous Phone Number - <strong>#{user.PhoneNumber}</strong></p>
               <input type="text" name="phonenumber" placeholder="Enter New Phone Number" pattern="[0-9]{10}" required/>
               //- <div class="total-cost">
-              <button type=submit onclick="validatePassword()">Submit</button> 
-                //- <h6><a href="/profile"><span>DONE</span></a></h6>
+              //-   <h6><a href="/profile"><span>DONE</span></a></h6>
               //- </div>
+              <div class="center-it">
+                <button class="site-btn" type=submit>Done</button> 
+              </div>
             </form> 
             </div>
           </div>
