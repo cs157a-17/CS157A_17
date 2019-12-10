@@ -104,7 +104,8 @@ router.get('/cart', checkauthorization, function (req, res, next) {
   db.query(sql, function (error, result, fields) {
     db.query(sql1, function (error, results, fields) {
       db.query(sql2, function (error, result2, fields) {
-        res.render('cart', { user: req.session.UserID, itemincart: result[0].iic, items: results, total: result2[0].total});
+        req.session.total = result2[0].total;
+        res.render('cart', { user: req.session.UserID, itemincart: result[0].iic, items: results, total: req.session.total});
       });
     });
   });
@@ -153,20 +154,17 @@ router.get('/inc/:id', checkauthorization, function (req, res, next) {
 });
 
 //checkout
-router.get('/checkout', checkauthorization, function (req, res, next) {
+router.get('/checkout', checkauthorization, checktotal, function (req, res, next) {
   var sql = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" + req.session.userId + "'";
-  var sql2 = "SELECT SUM(TotalPrice) as total FROM carts WHERE UserID = '" + req.session.userId + "'";
 
   db.query(sql, function (error, results, fields) {
-    db.query(sql2, function (error, result2, fields) {
-      req.session.total = result2[0].total + 3.9;
-      res.render('checkout', { user: req.session.UserID, itemincart: results[0].iic, total: result2[0].total });
-    });
+    req.session.total = req.session.total + 3.9;
+    res.render('checkout', { user: req.session.UserID, itemincart: results[0].iic, total: req.session.total });
   });
 });
 
 //post checkout
-router.post('/checkoutform', checkauthorization, function (req, res, next) {
+router.post('/checkoutform', checkauthorization, checktotal, function (req, res, next) {
   var sql = "SELECT * FROM addresses WHERE Street = '" + req.body.street + "'";
   var sql2 = "SELECT * FROM payingusers WHERE CardNumber = '" + req.body.cardnumber + "'";
   var sql4 = "DELETE FROM carts WHERE UserID = '" + req.session.userId + "'";
@@ -202,11 +200,13 @@ router.post('/checkoutform', checkauthorization, function (req, res, next) {
 });
 
 //success
-router.get('/success', checkauthorization, function (req, res, next) {
+router.get('/success', checkauthorization, checktotal, function (req, res, next) {
   var sql = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" + req.session.userId + "'";
 
   db.query(sql, function (error, results, fields) {
-    res.render('success', { user: req.session.UserID, itemincart: results[0].iic, total: req.session.total });
+    temp = req.session.total;
+    req.session.total = 0;
+    res.render('success', { user: req.session.UserID, itemincart: results[0].iic, total: temp });
   });
 });
 
@@ -290,6 +290,14 @@ function checkunauthorization(req, res, next) {
     res.redirect('/');
   } else {
     next();
+  }
+};
+
+function checktotal(req, res, next) {
+  if (req.session.total > 0) {
+    next();
+  } else {
+    res.redirect('/');
   }
 };
 
