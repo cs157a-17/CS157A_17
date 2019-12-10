@@ -32,7 +32,6 @@ block content
                                 </thead>
                                 <tbody>
                                     
-                                    -var total = 0;
                                     - for(var i=0; i < items.length; i++) {
                                     <tr>
                                     <td class="product-col">
@@ -60,17 +59,25 @@ block content
                                     <td class="size-col"><h4>#{items[i].Category}</h4></td>
                                     <td class="total-col"><h4>$#{items[i].TotalPrice}</h4></td>
                                     </tr>
-                                    - total = total + items[i].TotalPrice;};
+                                    - };
                                 </tbody>
                             </table>
                         </div>
                         <div class="total-cost">
-                            <h6>Total <span>$#{total.toFixed(2)}</span></h6>
+                            - if (total > 0) {
+                                <h6>Total <span>$#{total.toFixed(2)}</span></h6>
+                            - } else {
+                                <h6>Total <span>$0</span></h6>
+                            - }
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 card-right">
-                    <a href="/checkout" class="site-btn">Proceed to checkout</a>
+                    - if (total > 0) {
+                        <a href="/checkout" class="site-btn">Proceed to checkout</a>
+                    - } else {
+                        <a href="/cart" class="site-btn" onclick="alert('Cart has no item to check out!');">Proceed to checkout</a>
+                    - }
                     <a href="/" class="site-btn sb-dark">Continue shopping</a>
                 </div>
             </div>
