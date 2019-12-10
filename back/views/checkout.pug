@@ -69,9 +69,10 @@ block content
             <div class="checkout-cart">
               <h3>Your Cart</h3>
               <ul class="price-list">
-                <li>Cost<span>$96.00</span></li>
+                <li>Cost<span>$#{total.toFixed(2)}</span></li>
                 <li>Shipping<span>$3.90</span></li>
-                <li class="total">Total<span>$99.90</span></li>
+                - var temp = total + 3.9
+                <li class="total">Total<span>$#{temp.toFixed(2)}</span></li>
               </ul>
             </div>
           </div>

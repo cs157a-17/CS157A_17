@@ -99,10 +99,13 @@ router.get('/addtocart/:id', function (req, res, next) {
 router.get('/cart', checkauthorization, function (req, res, next) {
   var sql = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" + req.session.userId + "'";
   var sql1 = "SELECT items.ItemID, Name, Price, Category, Quantity, TotalPrice FROM items, carts WHERE UserID = '" + req.session.userId + "' AND items.ItemID = carts.ItemID";
+  var sql2 = "SELECT SUM(TotalPrice) as total FROM carts WHERE UserID = '" + req.session.userId + "'";
 
   db.query(sql, function (error, result, fields) {
     db.query(sql1, function (error, results, fields) {
-      res.render('cart', { user: req.session.UserID, itemincart: result[0].iic, items: results });
+      db.query(sql2, function (error, result2, fields) {
+        res.render('cart', { user: req.session.UserID, itemincart: result[0].iic, items: results, total: result2[0].total});
+      });
     });
   });
 });
@@ -152,9 +155,13 @@ router.get('/inc/:id', checkauthorization, function (req, res, next) {
 //checkout
 router.get('/checkout', checkauthorization, function (req, res, next) {
   var sql = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" + req.session.userId + "'";
+  var sql2 = "SELECT SUM(TotalPrice) as total FROM carts WHERE UserID = '" + req.session.userId + "'";
 
   db.query(sql, function (error, results, fields) {
-    res.render('checkout', { user: req.session.UserID, itemincart: results[0].iic });
+    db.query(sql2, function (error, result2, fields) {
+      req.session.total = result2[0].total + 3.9;
+      res.render('checkout', { user: req.session.UserID, itemincart: results[0].iic, total: result2[0].total });
+    });
   });
 });
 
@@ -199,7 +206,7 @@ router.get('/success', checkauthorization, function (req, res, next) {
   var sql = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" + req.session.userId + "'";
 
   db.query(sql, function (error, results, fields) {
-    res.render('success', { user: req.session.UserID, itemincart: results[0].iic });
+    res.render('success', { user: req.session.UserID, itemincart: results[0].iic, total: req.session.total });
   });
 });
 
