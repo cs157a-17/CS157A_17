@@ -162,7 +162,9 @@ router.get('/checkout', checkauthorization, function (req, res, next) {
 router.post('/checkoutform', checkauthorization, function (req, res, next) {
   var sql = "SELECT * FROM addresses WHERE Street = '" + req.body.street + "'";
   var sql2 = "SELECT * FROM payingusers WHERE CardNumber = '" + req.body.cardnumber + "'";
+  var sql4 = "DELETE FROM carts WHERE UserID = '" + req.session.userId + "'";
 
+  db.query(sql4, function (error, result, fields) {});
   db.query(sql, function (error, result, fields) {
     if (result.length) {
       db.query(sql2, function (error, result2, fields) {
@@ -198,6 +200,18 @@ router.get('/success', checkauthorization, function (req, res, next) {
 
   db.query(sql, function (error, results, fields) {
     res.render('success', { user: req.session.UserID, itemincart: results[0].iic });
+  });
+});
+
+//search
+router.post('/search', checkauthorization, function (req, res, next) {
+  var sql = "SELECT * FROM items WHERE Name LIKE '%" + req.body.search + "%'";
+  var sql1 = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" + req.session.userId + "'";
+
+  db.query(sql1, function (error, result1, fields) {
+    db.query(sql, function (error, result2, fields) {
+      res.render('page', { titlename: 'Search', name: 'Result for ' + req.body.search, items: result2, itemincart: result1[0].iic });
+    });
   });
 });
 
