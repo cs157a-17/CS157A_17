@@ -158,7 +158,7 @@ router.get('/checkout', checkauthorization, checktotal, function (req, res, next
   var sql = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" + req.session.userId + "'";
 
   db.query(sql, function (error, results, fields) {
-    req.session.total = req.session.total + 3.9;
+    req.session.total = req.session.total;
     res.render('checkout', { user: req.session.UserID, itemincart: results[0].iic, total: req.session.total });
   });
 });
@@ -204,7 +204,7 @@ router.get('/success', checkauthorization, checktotal, function (req, res, next)
   var sql = "SELECT SUM(Quantity) as iic FROM carts WHERE UserID = '" + req.session.userId + "'";
 
   db.query(sql, function (error, results, fields) {
-    temp = req.session.total;
+    temp = req.session.total + 3.9;
     req.session.total = 0;
     res.render('success', { user: req.session.UserID, itemincart: results[0].iic, total: temp });
   });
